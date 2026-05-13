@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pre-Calculus Answer Key: Solving Trigonometric Equations</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)'], ['$','$']] },
+  startup: { ready: () => { MathJax.startup.defaultReady(); } }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+/* =========================================================================
+   base-print.css
+   ========================================================================= */
+.kenny-reminder {
+  border: 2px solid var(--color-warning, #d84315);
+  border-left: 6px solid var(--color-warning, #d84315);
+  border-radius: 8px;
+  padding: 14px 18px 14px 22px;
+  margin: 18px 0 24px;
+  background: #fffaf0;
+  page-break-inside: avoid;
+  break-inside: avoid;
+  font-size: 11pt;
+  line-height: 1.65;
+}
+.kenny-reminder .kr-header {
+  display: flex; align-items: center; gap: 8px;
+  font-weight: bold; color: var(--color-warning, #d84315);
+  margin-bottom: 8px; font-size: 11pt; letter-spacing: 0.02em;
+}
+.kenny-reminder .kr-icon { font-size: 16pt; line-height: 1; }
+.kenny-reminder .kr-body { color: #1a1a1a; margin: 0; }
+.kenny-reminder .kr-body p { margin: 4px 0; }
+.kenny-reminder .kr-body strong { color: var(--color-warning, #d84315); }
+@media print {
+  .kenny-reminder { background: transparent !important; border-color: #333 !important; border-left-color: #333 !important; }
+  .kenny-reminder .kr-header, .kenny-reminder .kr-body strong { color: #000 !important; }
+}
+
+@page { size: letter; margin: 1in; }
+@page :left  { margin: 25mm; }
+@page :right { margin: 25mm; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #fafafa; }
+body { font-family: 'Century Schoolbook', 'Times New Roman', serif; color: #000; }
+.page { max-width: 720px; margin: 0 auto; padding: 70px 50px 40px 50px; background: #fff; }
+.page-break { page-break-before: always; break-before: page; }
+@media print {
+  html, body { background: #fff; }
+  .page { max-width: none; padding: 0.7in 0.6in 0.5in 0.6in; margin: 0; box-shadow: none; }
+  .answer-block, .part-header, h1 { page-break-inside: avoid; break-inside: avoid; }
+  .page-break { page-break-before: always; break-before: page; }
+  .footer { display: none !important; }
+}
+
+/* =========================================================================
+   theme-girl.css
+   ========================================================================= */
+:root {
+  --color-primary:       #c2185b;
+  --color-primary-dark:  #880e4f;
+  --color-accent:        #7b1fa2;
+  --color-header-border: #c2185b;
+  --color-final-answer:  #2e7d32;
+  --color-warning:       #d84315;
+  --color-reject:        #b71c1c;
+  --color-muted:         #555;
+  --color-rule:          #ccc;
+}
+
+/* =========================================================================
+   level-high.css
+   ========================================================================= */
+body { font-family: 'Source Serif Pro', 'Georgia', 'Times New Roman', serif; font-size: 10.5pt; line-height: 1.55; }
+h1, h2, h3, .part-header { font-family: 'Libre Baskerville', 'Georgia', serif; }
+.header { text-align: center; padding-bottom: 10px; margin-bottom: 16px; border-bottom: 2px solid var(--color-header-border); }
+.school-name { font-size: 9pt; letter-spacing: 4px; color: var(--color-primary); font-weight: bold; }
+.subject-tag, .key-tag { display: inline-block; padding: 2px 10px; font-size: 8pt; letter-spacing: 2px; margin: 5px 3px 7px 3px; font-weight: bold; }
+.subject-tag { border: 1.5px solid var(--color-primary); color: var(--color-primary); }
+.key-tag { border: 1.5px solid var(--color-warning); color: var(--color-warning); }
+h1 { font-size: 16pt; margin: 6px 0 8px 0; font-weight: bold; line-height: 1.3; }
+.info { display: flex; justify-content: space-between; font-size: 10pt; margin-top: 6px; }
+.standard { font-size: 8pt; font-style: italic; margin-top: 4px; color: var(--color-muted); }
+.part-header { font-size: 13pt; font-weight: bold; color: var(--color-primary); margin: 22px 0 6px 0; padding-bottom: 3px; border-bottom: 1.5px solid var(--color-primary); }
+.answer-block { margin: 18px 0; padding: 12px 16px; border: 1px solid #e0e0e0; border-radius: 6px; page-break-inside: avoid; break-inside: avoid; }
+.problem-header { font-weight: bold; color: var(--color-primary); font-size: 11pt; margin-bottom: 6px; }
+.solution { margin: 6px 0; padding-left: 10px; border-left: 3px solid var(--color-final-answer); }
+.solution-step { margin: 5px 0; font-size: 10.5pt; line-height: 1.7; }
+.final-answer { display: inline-block; border: 2px solid var(--color-final-answer); color: var(--color-final-answer); font-weight: bold; padding: 4px 14px; border-radius: 4px; margin-top: 8px; font-size: 11pt; }
+.reject-note { display: inline-block; background: #ffebee; border: 1.5px solid var(--color-reject); color: var(--color-reject); font-weight: bold; padding: 3px 10px; border-radius: 4px; font-size: 10pt; margin-left: 6px; }
+.footer { text-align: center; font-size: 8pt; color: #666; border-top: 1px solid var(--color-rule); margin-top: 20px; padding-top: 6px; }
+
+/* =========================================================================
+   editor-widget.css (minimal — AK print-only)
+   ========================================================================= */
+:root {
+  --ed-accent:        #1565c0;
+  --ed-bar-bg:        #1e2d3d;
+  --ed-bar-text:      #e2e8f0;
+}
+.ed-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000; height: 38px; background: var(--ed-bar-bg); border-top: 1px solid #334155; display: flex; align-items: center; gap: 4px; padding: 0 12px; font-family: ui-sans-serif, system-ui, sans-serif; }
+.ed-bar-label { font-size: 10px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.08em; margin-right: 6px; }
+.ed-bar-btn { height: 26px; padding: 0 10px; font-size: 11px; cursor: pointer; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; color: var(--ed-bar-text); display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; transition: all 0.12s ease; font-family: inherit; }
+.ed-bar-btn.ed-bar-primary { background: var(--ed-accent); border-color: var(--ed-accent); color: #fff; }
+.ed-bar-btn.ed-bar-primary:hover { background: #0d47a1; }
+.ed-bar-spacer { flex: 1; }
+body { padding-bottom: 46px; }
+@media print {
+  .ed-bar { display: none !important; }
+  body { padding-bottom: 0 !important; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="school-name">NEWTON SCHOOL</div>
+    <span class="subject-tag">PRE-CALCULUS</span>
+    <span class="key-tag">ANSWER KEY</span>
+    <h1>Solving Trigonometric Equations</h1>
+    <div class="info">
+      <span><strong>Student:</strong> Anne Takemoto</span>
+      <span><strong>Date:</strong> 2026-05-12</span>
+    </div>
+    <div class="standard">
+      <strong>Note:</strong> All solutions in \([0, 2\pi)\) unless stated otherwise. General form given where applicable.
+    </div>
+  </div>
+
+  <!-- KENNY'S REMINDER BOX -->
+  <div class="kenny-reminder">
+    <div class="kr-header"><span class="kr-icon">&#128276;</span> Mr. Kenny's Key Point</div>
+    <div class="kr-body">
+      <p>Two big traps in trig equations:</p>
+      <p>1. <strong>Always check the range</strong> (\(|\sin| \leq 1\), \(|\cos| \leq 1\)) &mdash; extraneous roots like \(\cos x = 3\) must be rejected.</p>
+      <p>2. For <strong>multiple-angle</strong> equations (\(2x\), \(x/2\), etc.), find ALL solutions in the wider domain first, then translate back to \(x\).</p>
+    </div>
+  </div>
+
+  <!-- PART A -->
+  <div class="part-header">Part A &mdash; Direct Equations &amp; Factoring</div>
+
+  <!-- Q1 -->
+  <div class="answer-block">
+    <div class="problem-header">1. \(2\sin x - 1 = 0\) on \([0,2\pi)\)</div>
+    <div class="solution">
+      <div class="solution-step">Isolate: \(2\sin x = 1 \;\Rightarrow\; \sin x = \dfrac{1}{2}\)</div>
+      <div class="solution-step">Reference angle: \(\dfrac{\pi}{6}\)</div>
+      <div class="solution-step">Sine is positive in QI and QII: \(x = \dfrac{\pi}{6},\;\dfrac{5\pi}{6}\)</div>
+    </div>
+    <div class="final-answer">\(x = \dfrac{\pi}{6},\;\dfrac{5\pi}{6}\)</div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="answer-block">
+    <div class="problem-header">2. \(\tan x + 1 = 0\) on \([0,2\pi)\)</div>
+    <div class="solution">
+      <div class="solution-step">Isolate: \(\tan x = -1\)</div>
+      <div class="solution-step">Reference angle: \(\dfrac{\pi}{4}\)</div>
+      <div class="solution-step">Tangent is negative in QII and QIV: \(x = \pi - \dfrac{\pi}{4} = \dfrac{3\pi}{4},\quad x = 2\pi - \dfrac{\pi}{4} = \dfrac{7\pi}{4}\)</div>
+    </div>
+    <div class="final-answer">\(x = \dfrac{3\pi}{4},\;\dfrac{7\pi}{4}\)</div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="answer-block">
+    <div class="problem-header">3. \(2\sin\theta\cos\theta + \cos\theta = 0\) on \([0,2\pi)\)</div>
+    <div class="solution">
+      <div class="solution-step">Factor: \(\cos\theta\,(2\sin\theta + 1) = 0\)</div>
+      <div class="solution-step"><strong>Case 1:</strong> \(\cos\theta = 0 \;\Rightarrow\; \theta = \dfrac{\pi}{2},\;\dfrac{3\pi}{2}\)</div>
+      <div class="solution-step"><strong>Case 2:</strong> \(2\sin\theta + 1 = 0 \;\Rightarrow\; \sin\theta = -\dfrac{1}{2}\)</div>
+      <div class="solution-step">Sine is negative in QIII and QIV: \(\theta = \pi + \dfrac{\pi}{6} = \dfrac{7\pi}{6},\quad \theta = 2\pi - \dfrac{\pi}{6} = \dfrac{11\pi}{6}\)</div>
+    </div>
+    <div class="final-answer">\(\theta = \dfrac{\pi}{2},\;\dfrac{3\pi}{2},\;\dfrac{7\pi}{6},\;\dfrac{11\pi}{6}\)</div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="answer-block">
+    <div class="problem-header">4. \(\sin^2 x - \cos^2 x = 0\) on \([0,2\pi)\)</div>
+    <div class="solution">
+      <div class="solution-step">Rewrite: \(\sin^2 x = \cos^2 x\)</div>
+      <div class="solution-step">Divide by \(\cos^2 x\) (valid wherever \(\cos x \neq 0\), checked separately): \(\tan^2 x = 1 \;\Rightarrow\; \tan x = \pm 1\)</div>
+      <div class="solution-step">Reference angle: \(\dfrac{\pi}{4}\). Tangent is \(\pm1\) in all four quadrants.</div>
+      <div class="solution-step">\(x = \dfrac{\pi}{4},\;\dfrac{3\pi}{4},\;\dfrac{5\pi}{4},\;\dfrac{7\pi}{4}\)</div>
+      <div class="solution-step"><em>Check \(\cos x = 0\): \(x = \dfrac{\pi}{2}, \dfrac{3\pi}{2}\) give \(\sin^2 x - \cos^2 x = 1 \neq 0\). Not solutions.</em></div>
+    </div>
+    <div class="final-answer">\(x = \dfrac{\pi}{4},\;\dfrac{3\pi}{4},\;\dfrac{5\pi}{4},\;\dfrac{7\pi}{4}\)</div>
+  </div>
+
+  <!-- PART B -->
+  <div class="page-break"></div>
+  <div class="part-header">Part B &mdash; Quadratic in a Trig Function</div>
+
+  <!-- Q5 -->
+  <div class="answer-block">
+    <div class="problem-header">5. \(2\cos^2 x - 7\cos x + 3 = 0\) on \([0,2\pi)\)</div>
+    <div class="solution">
+      <div class="solution-step">Let \(u = \cos x\): \(2u^2 - 7u + 3 = 0\)</div>
+      <div class="solution-step">Factor: \((2u - 1)(u - 3) = 0\)</div>
+      <div class="solution-step">\(u = \dfrac{1}{2}\) &nbsp;&nbsp;OR&nbsp;&nbsp; \(u = 3\) <span class="reject-note">REJECT: \(|\cos x| \leq 1\)</span></div>
+      <div class="solution-step">Solve \(\cos x = \dfrac{1}{2}\): Reference angle \(\dfrac{\pi}{3}\). Cosine positive in QI and QIV.</div>
+      <div class="solution-step">\(x = \dfrac{\pi}{3},\quad x = 2\pi - \dfrac{\pi}{3} = \dfrac{5\pi}{3}\)</div>
+    </div>
+    <div class="final-answer">\(x = \dfrac{\pi}{3},\;\dfrac{5\pi}{3}\)</div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="answer-block">
+    <div class="problem-header">6. \(2\cos^2\theta + \sin\theta = 1\) on \((0, 2\pi]\)</div>
+    <div class="solution">
+      <div class="solution-step">Substitute \(\cos^2\theta = 1 - \sin^2\theta\):</div>
+      <div class="solution-step">\(2(1 - \sin^2\theta) + \sin\theta = 1\)</div>
+      <div class="solution-step">\(2 - 2\sin^2\theta + \sin\theta = 1\)</div>
+      <div class="solution-step">\(-2\sin^2\theta + \sin\theta + 1 = 0 \;\Rightarrow\; 2\sin^2\theta - \sin\theta - 1 = 0\)</div>
+      <div class="solution-step">Let \(u = \sin\theta\): \((2u + 1)(u - 1) = 0\)</div>
+      <div class="solution-step"><strong>Case 1:</strong> \(\sin\theta = 1 \;\Rightarrow\; \theta = \dfrac{\pi}{2}\)</div>
+      <div class="solution-step"><strong>Case 2:</strong> \(\sin\theta = -\dfrac{1}{2}\). Reference angle \(\dfrac{\pi}{6}\). Sine negative in QIII and QIV.</div>
+      <div class="solution-step">\(\theta = \pi + \dfrac{\pi}{6} = \dfrac{7\pi}{6},\quad \theta = 2\pi - \dfrac{\pi}{6} = \dfrac{11\pi}{6}\)</div>
+      <div class="solution-step"><em>Interval \((0, 2\pi]\): all three solutions are in range (\(\theta = 2\pi\) &mdash; check: \(\sin 2\pi = 0 \neq -\tfrac{1}{2}\), so only 3 solutions).</em></div>
+    </div>
+    <div class="final-answer">\(\theta = \dfrac{\pi}{2},\;\dfrac{7\pi}{6},\;\dfrac{11\pi}{6}\)</div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="answer-block">
+    <div class="problem-header">7. \(\tan^2 x = 3\) on \([0,2\pi)\)</div>
+    <div class="solution">
+      <div class="solution-step">Take square root: \(\tan x = \pm\sqrt{3}\)</div>
+      <div class="solution-step">Reference angle: \(\dfrac{\pi}{3}\) (since \(\tan\tfrac{\pi}{3} = \sqrt{3}\))</div>
+      <div class="solution-step">\(\tan x = \sqrt{3}\): QI and QIII &nbsp;\(\Rightarrow\; x = \dfrac{\pi}{3},\;\dfrac{\pi}{3} + \pi = \dfrac{4\pi}{3}\)</div>
+      <div class="solution-step">\(\tan x = -\sqrt{3}\): QII and QIV &nbsp;\(\Rightarrow\; x = \pi - \dfrac{\pi}{3} = \dfrac{2\pi}{3},\;2\pi - \dfrac{\pi}{3} = \dfrac{5\pi}{3}\)</div>
+    </div>
+    <div class="final-answer">\(x = \dfrac{\pi}{3},\;\dfrac{2\pi}{3},\;\dfrac{4\pi}{3},\;\dfrac{5\pi}{3}\)</div>
+  </div>
+
+  <!-- PART C -->
+  <div class="page-break"></div>
+  <div class="part-header">Part C &mdash; Multiple-Angle Equations</div>
+
+  <!-- Q8 -->
+  <div class="answer-block">
+    <div class="problem-header">8. \(\cos 2x = -1\) on \([0,2\pi)\)</div>
+    <div class="solution">
+      <div class="solution-step">Let \(u = 2x\). Since \(x \in [0,2\pi)\), we have \(u \in [0, 4\pi)\).</div>
+      <div class="solution-step">Solve \(\cos u = -1\): \(u = \pi,\;3\pi\) (within \([0,4\pi)\))</div>
+      <div class="solution-step">Convert back: \(x = \dfrac{u}{2}\)</div>
+      <div class="solution-step">\(x = \dfrac{\pi}{2},\quad x = \dfrac{3\pi}{2}\)</div>
+    </div>
+    <div class="final-answer">\(x = \dfrac{\pi}{2},\;\dfrac{3\pi}{2}\)</div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="answer-block">
+    <div class="problem-header">9. \(\sqrt{3}\,\tan\!\left(\dfrac{x}{2}\right) - 1 = 0\) on \([0,2\pi)\)</div>
+    <div class="solution">
+      <div class="solution-step">Isolate: \(\tan\!\left(\dfrac{x}{2}\right) = \dfrac{1}{\sqrt{3}}\)</div>
+      <div class="solution-step">Let \(u = \dfrac{x}{2}\). Since \(x \in [0,2\pi)\), we have \(u \in [0,\pi)\).</div>
+      <div class="solution-step">Reference angle: \(\dfrac{\pi}{6}\) (since \(\tan\tfrac{\pi}{6} = \tfrac{1}{\sqrt{3}}\))</div>
+      <div class="solution-step">Tangent positive in QI only (within \([0,\pi)\)): \(u = \dfrac{\pi}{6}\)</div>
+      <div class="solution-step">Convert back: \(x = 2u = 2 \cdot \dfrac{\pi}{6} = \dfrac{\pi}{3}\)</div>
+    </div>
+    <div class="final-answer">\(x = \dfrac{\pi}{3}\)</div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="answer-block">
+    <div class="problem-header">10. \(\sin 2x = \dfrac{1}{2}\) on \([0,2\pi)\)</div>
+    <div class="solution">
+      <div class="solution-step">Let \(u = 2x\). Since \(x \in [0,2\pi)\), we have \(u \in [0,4\pi)\).</div>
+      <div class="solution-step">Reference angle: \(\dfrac{\pi}{6}\). Sine positive in QI and QII.</div>
+      <div class="solution-step">In \([0,2\pi)\): \(u = \dfrac{\pi}{6},\;\dfrac{5\pi}{6}\)</div>
+      <div class="solution-step">In \([2\pi, 4\pi)\): \(u = 2\pi + \dfrac{\pi}{6} = \dfrac{13\pi}{6},\quad u = 2\pi + \dfrac{5\pi}{6} = \dfrac{17\pi}{6}\)</div>
+      <div class="solution-step">Convert back \(x = \dfrac{u}{2}\):</div>
+      <div class="solution-step">\(x = \dfrac{\pi}{12},\quad x = \dfrac{5\pi}{12},\quad x = \dfrac{13\pi}{12},\quad x = \dfrac{17\pi}{12}\)</div>
+    </div>
+    <div class="final-answer">\(x = \dfrac{\pi}{12},\;\dfrac{5\pi}{12},\;\dfrac{13\pi}{12},\;\dfrac{17\pi}{12}\)</div>
+  </div>
+
+  <div class="footer">Newton School &middot; 2175 Lemoine Ave Suite 304, Fort Lee NJ 07024 &middot; www.newtonschool.net &middot; ANSWER KEY</div>
+
+</div>
+
+<div class="ed-bar">
+  <span class="ed-bar-label">Answer Key</span>
+  <div class="ed-bar-spacer"></div>
+  <button class="ed-bar-btn ed-bar-primary" onclick="window.print()">&#128438; Print / PDF</button>
+</div>
+</body>
+</html>
