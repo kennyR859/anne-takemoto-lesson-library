@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ANSWER KEY — Anne Takemoto — Mastery 30 — 2026-04-24</title>
+<script>
+window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    startup: { ready: () => { MathJax.startup.defaultReady(); } }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+@page { size: letter; margin: 0.5in; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #fafafa; }
+body { font-family: 'Source Serif Pro', 'Georgia', 'Times New Roman', serif; font-size: 10pt; line-height: 1.55; color: #000; }
+.page { max-width: 720px; margin: 0 auto; padding: 70px 50px 40px 50px; background: #fff; }
+.page-break { page-break-before: always; break-before: page; }
+@media print {
+    html, body { background: #fff; }
+    .page { max-width: none; padding: 0.7in 0.6in 0.5in 0.6in; margin: 0; box-shadow: none; }
+    .answer-block { page-break-inside: avoid; break-inside: avoid; }
+    .part-header, .problem-header, h1, h2, h3 { page-break-after: avoid; break-after: avoid; }
+    .page-break { page-break-before: always; break-before: page; }
+    .problem-text { background: transparent !important; border-left: 3px solid #999; }
+}
+:root {
+    --color-primary: #c2185b; --color-accent: #7b1fa2; --color-header-border: #c2185b;
+    --color-final-answer: #2e7d32; --color-warning: #d84315;
+    --color-tag-border: #c2185b; --color-tag-text: #c2185b; --color-muted: #555; --color-rule: #ccc;
+}
+h1, h2, h3, .part-header { font-family: 'Libre Baskerville', 'Georgia', serif; }
+.header { text-align: center; padding-bottom: 10px; margin-bottom: 16px; border-bottom: 2px solid var(--color-header-border); }
+.school-name { font-size: 9pt; letter-spacing: 4px; color: var(--color-primary); font-weight: bold; }
+.subject-tag, .key-tag { display: inline-block; padding: 2px 10px; font-size: 8pt; letter-spacing: 2px; margin: 5px 3px 7px 3px; font-weight: bold; }
+.subject-tag { border: 1.5px solid var(--color-primary); color: var(--color-primary); }
+.key-tag { border: 1.5px solid var(--color-warning); color: var(--color-warning); }
+h1 { font-size: 14pt; margin: 6px 0 8px 0; font-weight: bold; line-height: 1.3; }
+.info { display: flex; justify-content: space-between; font-size: 10pt; margin-top: 6px; }
+.part-header { font-size: 13pt; font-weight: bold; color: var(--color-primary); margin: 18px 0 6px 0; padding-bottom: 3px; border-bottom: 1.5px solid var(--color-primary); }
+.answer-block { margin: 10px 0; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; }
+.answer-block.compact { padding: 6px 10px; margin: 6px 0; }
+.problem-header { font-weight: bold; color: var(--color-primary); font-size: 10.5pt; margin-bottom: 4px; }
+.problem-text { font-size: 9.5pt; padding: 4px 8px; background: #f7f7f7; border-left: 3px solid #bbb; margin-bottom: 6px; line-height: 1.5; }
+.solution { margin: 4px 0; padding-left: 8px; border-left: 3px solid var(--color-final-answer); }
+.solution-step { margin: 3px 0; font-size: 9.5pt; line-height: 1.55; }
+.final-answer { display: inline-block; border: 1.5px solid var(--color-final-answer); color: var(--color-final-answer); font-weight: bold; padding: 3px 10px; border-radius: 3px; margin-top: 5px; font-size: 10pt; }
+.compact-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 6px 0; }
+.footer { text-align: center; font-size: 8pt; color: #666; border-top: 1px solid var(--color-rule); margin-top: 18px; padding-top: 6px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="school-name">NEWTON SCHOOL</div>
+    <span class="subject-tag">PRE-CALCULUS</span>
+    <span class="key-tag">ANSWER KEY · 30 PROBLEMS</span>
+    <h1>Mastery Set: Log &rarr; Polynomials &mdash; Solutions</h1>
+    <div class="info">
+      <span><strong>Student:</strong> Anne Takemoto</span>
+      <span><strong>Date:</strong> 2026-04-24</span>
+    </div>
+  </div>
+
+  <!-- PART 1 -->
+  <div class="part-header">Part 1 &mdash; Logarithm Properties</div>
+
+  <div class="compact-row">
+    <div class="answer-block compact">
+      <div class="problem-header">1. \(\log_3(81)\)</div>
+      <div class="solution-step">\(3^{4} = 81 \Rightarrow\) <span class="final-answer">4</span></div>
+    </div>
+    <div class="answer-block compact">
+      <div class="problem-header">2. \(\log_2(1/16)\)</div>
+      <div class="solution-step">\(2^{-4} = 1/16 \Rightarrow\) <span class="final-answer">\(-4\)</span></div>
+    </div>
+    <div class="answer-block compact">
+      <div class="problem-header">3. \(\log_5(125)\)</div>
+      <div class="solution-step">\(5^{3} = 125 \Rightarrow\) <span class="final-answer">3</span></div>
+    </div>
+    <div class="answer-block compact">
+      <div class="problem-header">4. \(\ln(e^{7})\)</div>
+      <div class="solution-step">\(\ln(e^x) = x \Rightarrow\) <span class="final-answer">7</span></div>
+    </div>
+    <div class="answer-block compact">
+      <div class="problem-header">5. \(\log(10{,}000)\)</div>
+      <div class="solution-step">\(10^{4} = 10{,}000 \Rightarrow\) <span class="final-answer">4</span></div>
+    </div>
+    <div class="answer-block compact">
+      <div class="problem-header">6. \(\log_4(8) + \log_4(2)\)</div>
+      <div class="solution-step">\(=\log_4(16) = 2\). <span class="final-answer">2</span></div>
+    </div>
+    <div class="answer-block compact">
+      <div class="problem-header">7. \(\log_3(54) - \log_3(2)\)</div>
+      <div class="solution-step">\(=\log_3(27) = 3\). <span class="final-answer">3</span></div>
+    </div>
+  </div>
+
+  <div class="answer-block">
+    <div class="problem-header">8. Expand \(\log_2(x^{2}\,y^{3})\)</div>
+    <div class="solution"><div class="solution-step">Product rule then power rule: \(\log_2(x^2) + \log_2(y^3) = 2\log_2(x) + 3\log_2(y)\).</div></div>
+    <span class="final-answer">\(2\log_2(x) + 3\log_2(y)\)</span>
+  </div>
+
+  <div class="answer-block">
+    <div class="problem-header">9. Expand \(\ln\!\left(\sqrt{a/b}\right)\)</div>
+    <div class="solution">
+      <div class="solution-step">Power: \(\ln(a/b)^{1/2} = \tfrac{1}{2}\ln(a/b)\).</div>
+      <div class="solution-step">Quotient: \(\tfrac{1}{2}\bigl(\ln a - \ln b\bigr)\).</div>
+    </div>
+    <span class="final-answer">\(\tfrac{1}{2}\ln(a) - \tfrac{1}{2}\ln(b)\)</span>
+  </div>
+
+  <div class="answer-block">
+    <div class="problem-header">10. Expand \(\log_5\!\left(\dfrac{x^{3}\,y}{z^{2}}\right)\)</div>
+    <div class="solution"><div class="solution-step">Quotient: \(\log_5(x^3 y) - \log_5(z^2)\). Then product + power: \(3\log_5(x) + \log_5(y) - 2\log_5(z)\).</div></div>
+    <span class="final-answer">\(3\log_5(x) + \log_5(y) - 2\log_5(z)\)</span>
+  </div>
+
+  <div class="answer-block">
+    <div class="problem-header">11. Condense \(4\log(x) + 2\log(y) - 3\log(z)\)</div>
+    <div class="solution"><div class="solution-step">Reverse power: \(\log(x^4) + \log(y^2) - \log(z^3) = \log\!\left(\dfrac{x^4 y^2}{z^3}\right)\).</div></div>
+    <span class="final-answer">\(\log\!\left(\dfrac{x^{4}\,y^{2}}{z^{3}}\right)\)</span>
+  </div>
+
+  <div class="answer-block">
+    <div class="problem-header">12. Condense \(\tfrac{1}{2}\ln(a) - 3\ln(b)\)</div>
+    <div class="solution"><div class="solution-step">\(\ln(a^{1/2}) - \ln(b^3) = \ln\!\left(\dfrac{\sqrt{a}}{b^3}\right)\).</div></div>
+    <span class="final-answer">\(\ln\!\left(\dfrac{\sqrt{a}}{b^{3}}\right)\)</span>
+  </div>
+
+  <!-- PART 2 -->
+  <div class="part-header page-break">Part 2 &mdash; Log Equations</div>
+
+  <div class="answer-block">
+    <div class="problem-header">13. Solve \(\log_2(x) = 5\)</div>
+    <div class="solution">
+      <div class="solution-step">Domain: \(x > 0\).</div>
+      <div class="solution-step">Convert: \(x = 2^5 = 32\). \(32 > 0\) &check;.</div>
+    </div>
+    <span class="final-answer">\(x = 32\)</span>
+  </div>
+
+  <div class="answer-block">
+    <div class="problem-header">14. Solve \(\log_3(x-2) = 4\)</div>
+    <div class="solution">
+      <div class="solution-step">Domain: \(x > 2\).</div>
+      <div class="solution-step">\(x - 2 = 3^4 = 81 \Rightarrow x = 83\). &check;</div>
+    </div>
+    <span class="final-answer">\(x = 83\)</span>
+  </div>
+
+  <div class="answer-block">
+    <div class="problem-header">15. Solve \(\log_2(x) + \log_2(x+2) = 3\)</div>
+    <div class="solution">
+      <div class="solution-step">Domain: \(x > 0\).</div>
+      <div class="solution-step">\(\log_2(x(x+2)) = 3 \Rightarrow x(x+2) = 8\).</div>
+      <div class="solution-step">\(x^2 + 2x - 8 = 0 \Rightarrow (x+4)(x-2) = 0\).</div>
+      <div class="solution-step">\(x = 2\) or \(x = -4\). Reject \(-4\) (outside domain).</div>
+    </div>
+    <span class="final-answer">\(x = 2\)</span>
+  </div>
+
+  <div class="answer-block">
+    <div class="problem-header">16. Solve \(\log_5(x+1) - \log_5(x-3) = 1\)</div>
+    <div class="solution">
+      <div class="solution-step">Domain: \(x + 1 > 0\) AND \(x - 3 > 0 \Rightarrow x > 3\).</div>
+      <div class="solution-step">\(\log_5\!\left(\dfrac{x+1}{x-3}\right) = 1 \Rightarrow \dfrac{x+1}{x-3} = 5\).</div>
+      <div class="solution-step">\(x + 1 = 5(x-3) = 5x - 15 \Rightarrow -4x = -16 \Rightarrow x = 4\). \(4 > 3\) &check;.</div>
+    </div>
+    <span class="final-answer">\(x = 4\)</span>
+  </div>
+
+  <!-- PART 3 -->
+  <div class="part-header">Part 3 &mdash; Exponential Modeling</div>
+
+  <div class="answer-block">
+    <div class="problem-header">17. Solve \(5^{x} = 14\)</div>
+    <div class="solution">
+      <div class="solution-step">\(x = \log_5(14) = \dfrac{\ln 14}{\ln 5} = \dfrac{2.6391}{1.6094} \approx 1.6397\).</div>
+    </div>
+    <span class="final-answer">\(x \approx 1.6397\)</span>
+  </div>
+
+  <div class="answer-block">
+    <div class="problem-header">18. \(\$3{,}000\) at \(5.5\%\) continuous \(\to\) \(\$9{,}000\)?</div>
+    <div class="solution">
+      <div class="solution-step">\(9000 = 3000\,e^{0.055\,t} \Rightarrow 3 = e^{0.055\,t}\).</div>
+      <div class="solution-step">\(\ln 3 = 0.055\,t \Rightarrow t = \dfrac{\ln 3}{0.055} = \dfrac{1.0986}{0.055} \approx 19.975\).</div>
+    </div>
+    <span class="final-answer">\(t \approx 19.97\) years</span>
+  </div>
+
+  <div class="answer-block">
+    <div class="problem-header">19. \(f(t) = 800(1.045)^{t} \to 800\,e^{rt}\)</div>
+    <div class="solution">
+      <div class="solution-step">(a) \((1.045)^t = e^{t\ln(1.045)} \Rightarrow r = \ln(1.045)\).</div>
+      <div class="solution-step">(b) Decimal: \(r \approx 0.04402\), so continuous rate \(\approx 4.40\%\) (slightly less than the discrete \(4.5\%\)).</div>
+    </div>
+    <span class="final-answer">(a) \(r = \ln(1.045)\) &nbsp; (b) \(\approx 4.40\%\)</span>
+  </div>
+
+  <div class="answer-block">
+    <div class="problem-header">20. 100 g \(\to\) 10 g over 50 yr</div>
+    <div class="solution">
+      <div class="solution-step">(a) \(10 = 100\,e^{50k} \Rightarrow 0.1 = e^{50k} \Rightarrow k = \dfrac{\ln(0.1)}{50} = -\dfrac{\ln 10}{50} \approx -0.04605\).</div>
+      <div class="solution-step">(b) Half-life: \(\tfrac{1}{2} = e^{k\,t_h} \Rightarrow t_h = \dfrac{\ln(1/2)}{k} = \dfrac{-\ln 2}{-\ln 10/50} = \dfrac{50 \ln 2}{\ln 10} \approx \dfrac{50(0.6931)}{2.3026} \approx 15.05\).</div>
+    </div>
+    <span class="final-answer">(a) \(k = -\tfrac{\ln 10}{50}\) &nbsp; (b) \(t_h \approx 15.05\) years</span>
+  </div>
+
+  <!-- PART 4 -->
+  <div class="part-header page-break">Part 4 &mdash; Fundamental Theorem of Algebra</div>
+
+  <div class="answer-block">
+    <div class="problem-header">21. \((3-i)\) zero of \(P(x) = x^{4} - 9x^{3} + 30x^{2} - 42x + 20\)</div>
+    <div class="solution">
+      <div class="solution-step"><strong>Step 1.</strong> Conjugate \((3+i)\) is also a zero.</div>
+      <div class="solution-step"><strong>Step 2.</strong> Quadratic factor: \((x-(3-i))(x-(3+i)) = (x-3)^2 - i^2 = x^2 - 6x + 10\).</div>
+      <div class="solution-step"><strong>Step 3.</strong> Divide \(P(x)\) by \(x^2 - 6x + 10\) (long division):
+      \[ \dfrac{x^{4} - 9x^{3} + 30x^{2} - 42x + 20}{x^{2} - 6x + 10} = x^{2} - 3x + 2. \]</div>
+      <div class="solution-step"><strong>Step 4.</strong> Factor: \(x^2 - 3x + 2 = (x-1)(x-2)\).</div>
+      <div class="solution-step"><strong>All zeros:</strong> \(\{1,\;2,\;3-i,\;3+i\}\).</div>
+    </div>
+    <span class="final-answer">\(P(x) = (x-1)(x-2)\bigl(x-(3-i)\bigr)\bigl(x-(3+i)\bigr)\)</span>
+  </div>
+
+  <div class="answer-block">
+    <div class="problem-header">22. Degree 4, real int coefs, zeros \(x=2\) (mult 2) &amp; \(x = 2+i\)</div>
+    <div class="solution">
+      <div class="solution-step"><strong>Step 1.</strong> Conjugate \(2-i\) is also a zero. Four zeros: \(2, 2, 2+i, 2-i\).</div>
+      <div class="solution-step"><strong>Step 2.</strong> Complex pair: \(\bigl(x-(2+i)\bigr)\bigl(x-(2-i)\bigr) = (x-2)^2 - i^2 = x^2 - 4x + 5\).</div>
+      <div class="solution-step"><strong>Step 3.</strong> \((x-2)^2 = x^2 - 4x + 4\). Multiply with \(x^2 - 4x + 5\):
+      \[ (x^2 - 4x + 4)(x^2 - 4x + 5). \] Let \(u = x^2 - 4x\). Then \((u+4)(u+5) = u^2 + 9u + 20\). So:
+      \[ (x^2 - 4x)^2 + 9(x^2 - 4x) + 20 = x^4 - 8x^3 + 16x^2 + 9x^2 - 36x + 20 = x^4 - 8x^3 + 25x^2 - 36x + 20. \]</div>
+    </div>
+    <span class="final-answer">\(P(x) = x^{4} - 8x^{3} + 25x^{2} - 36x + 20\)</span>
+  </div>
+
+  <div class="answer-block">
+    <div class="problem-header">23. Degree 3, real coefs, zeros \(x = -1\) and \(x = 3i\)</div>
+    <div class="solution">
+      <div class="solution-step">Conjugate \(-3i\) also a zero. \((x-3i)(x+3i) = x^2 + 9\).</div>
+      <div class="solution-step">\(P(x) = (x+1)(x^2 + 9) = x^3 + 9x + x^2 + 9 = x^3 + x^2 + 9x + 9\).</div>
+    </div>
+    <span class="final-answer">\(P(x) = x^{3} + x^{2} + 9x + 9\)</span>
+  </div>
+
+  <!-- PART 5 -->
+  <div class="part-header">Part 5 &mdash; Synthetic Division &amp; Factor Theorem</div>
+
+  <div class="answer-block">
+    <div class="problem-header">24. \((2x^{3} + 3x^{2} - 8x + 3) \div (x - 1)\)</div>
+    <div class="solution">
+      <div class="solution-step">\(c = 1\). Synthetic:</div>
+      <div class="solution-step" style="font-family: monospace;">
+      \(\begin{array}{r|rrrr} 1 & 2 & 3 & -8 & 3 \\ & & 2 & 5 & -3 \\ \hline & 2 & 5 & -3 & \boxed{0} \end{array}\)
+      </div>
+      <div class="solution-step">Quotient \(Q(x) = 2x^2 + 5x - 3\); remainder \(R = 0 \Rightarrow (x-1)\) IS a factor.</div>
+    </div>
+    <span class="final-answer">\(Q(x) = 2x^{2} + 5x - 3,\; R = 0\). \((x-1)\) is a factor.</span>
+  </div>
+
+  <div class="answer-block">
+    <div class="problem-header">25. \(P(-2)\) for \(P(x) = x^{4} - 3x^{2} + 2x - 5\)</div>
+    <div class="solution">
+      <div class="solution-step">Insert zero for \(x^3\). Synthetic with \(c = -2\):</div>
+      <div class="solution-step" style="font-family: monospace;">
+      \(\begin{array}{r|rrrrr} -2 & 1 & 0 & -3 & 2 & -5 \\ & & -2 & 4 & -2 & 0 \\ \hline & 1 & -2 & 1 & 0 & \boxed{-5} \end{array}\)
+      </div>
+      <div class="solution-step">By Remainder Theorem, \(P(-2) = -5\). Check directly: \(16 - 0 - 12 - 4 - 5 = -5\). &check;</div>
+    </div>
+    <span class="final-answer">\(P(-2) = -5\)</span>
+  </div>
+
+  <div class="answer-block">
+    <div class="problem-header">26. Find \(k\) so \((x-3)\) is factor of \(P(x) = x^{3} - 2x^{2} + kx - 6\)</div>
+    <div class="solution">
+      <div class="solution-step">Factor Theorem: \(P(3) = 0\).</div>
+      <div class="solution-step">\(P(3) = 27 - 18 + 3k - 6 = 3 + 3k = 0 \Rightarrow k = -1\).</div>
+    </div>
+    <span class="final-answer">\(k = -1\)</span>
+  </div>
+
+  <div class="answer-block">
+    <div class="problem-header">27. Factor completely: \(P(x) = x^{3} - 7x + 6\) (\(x = 1\) is a zero)</div>
+    <div class="solution">
+      <div class="solution-step">Verify: \(P(1) = 1 - 7 + 6 = 0\). &check;</div>
+      <div class="solution-step">Synthetic with \(c = 1\) (insert 0 for \(x^2\)):</div>
+      <div class="solution-step" style="font-family: monospace;">
+      \(\begin{array}{r|rrrr} 1 & 1 & 0 & -7 & 6 \\ & & 1 & 1 & -6 \\ \hline & 1 & 1 & -6 & \boxed{0} \end{array}\)
+      </div>
+      <div class="solution-step">Quotient: \(x^2 + x - 6 = (x+3)(x-2)\).</div>
+    </div>
+    <span class="final-answer">\(P(x) = (x-1)(x-2)(x+3)\)</span>
+  </div>
+
+  <!-- PART 6 -->
+  <div class="part-header page-break">Part 6 &mdash; Polynomial Graphing</div>
+
+  <div class="answer-block">
+    <div class="problem-header">28. \(P(x) = (x-1)(x+2)^{2}(x-3)\)</div>
+    <div class="solution">
+      <div class="solution-step"><strong>Degree:</strong> \(1 + 2 + 1 = 4\). Leading term \(+x^4\) \(\Rightarrow\) end behavior: \(\uparrow\!\uparrow\) (both ends to \(+\infty\)).</div>
+      <div class="solution-step"><strong>Zeros:</strong> \(x = 1\) (mult 1, cross); \(x = -2\) (mult 2, bounce); \(x = 3\) (mult 1, cross).</div>
+      <div class="solution-step"><strong>\(y\)-intercept:</strong> \(P(0) = (-1)(2)^{2}(-3) = (-1)(4)(-3) = 12\). Point \((0, 12)\).</div>
+    </div>
+    <span class="final-answer">Deg 4, \(\uparrow\!\uparrow\); zeros: 1 (cross), \(-2\) (bounce), 3 (cross); \(y\)-int 12</span>
+  </div>
+
+  <div class="answer-block">
+    <div class="problem-header">29. \(P(x) = -x^{3}(x-2)(x+4)^{2}\)</div>
+    <div class="solution">
+      <div class="solution-step"><strong>Degree:</strong> \(3 + 1 + 2 = 6\). Leading term: \(-x^3 \cdot x \cdot x^2 = -x^6\) \(\Rightarrow\) end behavior: \(\downarrow\!\downarrow\) (both to \(-\infty\)).</div>
+      <div class="solution-step"><strong>Zeros:</strong> \(x = 0\) (mult 3, slide / flat-cross); \(x = 2\) (mult 1, cross); \(x = -4\) (mult 2, bounce).</div>
+      <div class="solution-step"><strong>\(y\)-intercept:</strong> \(P(0) = 0\) (graph passes through origin via slide).</div>
+    </div>
+    <span class="final-answer">Deg 6, \(\downarrow\!\downarrow\); zeros: 0 (slide), 2 (cross), \(-4\) (bounce); \(y\)-int 0</span>
+  </div>
+
+  <div class="answer-block">
+    <div class="problem-header">30. Build degree-4 with zeros \(-2\) (cross), 0 (bounce), 3 (cross), neg leading coef</div>
+    <div class="solution">
+      <div class="solution-step"><strong>Multiplicities:</strong> \(-2\) cross \(\Rightarrow\) mult 1; \(0\) bounce \(\Rightarrow\) mult 2; \(3\) cross \(\Rightarrow\) mult 1. Total \(1+2+1 = 4\). &check;</div>
+      <div class="solution-step"><strong>Equation (one valid choice):</strong> \(P(x) = -x^{2}(x+2)(x-3)\).</div>
+      <div class="solution-step"><strong>End behavior:</strong> degree 4 even, leading \(-1 \Rightarrow \downarrow\!\downarrow\).</div>
+      <div class="solution-step"><strong>Sketch:</strong> Coming from \(-\infty\) on left, crosses up at \(x=-2\), peaks above axis, touches and bounces down off zero at \(x=0\), goes back up briefly, crosses down at \(x=3\), drops to \(-\infty\) on right.</div>
+      <div class="solution-step" style="font-size: 9pt; color: #555;">(Other valid forms: any negative scalar multiple, e.g. \(-2x^2(x+2)(x-3)\) etc.)</div>
+    </div>
+    <span class="final-answer">\(P(x) = -x^{2}(x+2)(x-3)\), end \(\downarrow\!\downarrow\)</span>
+  </div>
+
+  <div class="footer">
+    Newton School &mdash; 2175 Lemoine Ave Suite 304, Fort Lee, NJ 07650 &mdash; (201) 252-7252 &mdash; Kenny@newtonschool.net<br>
+    Created 2026-04-24 &copy; Newton School &mdash; Mastery Set 30 Answer Key
+  </div>
+
+</div>
+</body>
+</html>

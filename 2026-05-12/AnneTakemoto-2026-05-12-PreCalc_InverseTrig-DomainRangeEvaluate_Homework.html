@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pre-Calculus Homework: Inverse Trig Functions — Domain, Range &amp; Evaluation</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)'], ['$','$']] },
+  startup: { ready: () => { MathJax.startup.defaultReady(); } }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+/* =========================================================================
+   base-print.css
+   ========================================================================= */
+/* ─── Kenny's Reminder Box ─── */
+.kenny-reminder {
+  border: 2px solid var(--color-warning, #d84315);
+  border-left: 6px solid var(--color-warning, #d84315);
+  border-radius: 8px;
+  padding: 14px 18px 14px 22px;
+  margin: 18px 0 24px;
+  background: #fffaf0;
+  page-break-inside: avoid;
+  break-inside: avoid;
+  font-size: 11pt;
+  line-height: 1.65;
+}
+.kenny-reminder .kr-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  color: var(--color-warning, #d84315);
+  margin-bottom: 8px;
+  font-size: 11pt;
+  letter-spacing: 0.02em;
+}
+.kenny-reminder .kr-icon { font-size: 16pt; line-height: 1; }
+.kenny-reminder .kr-body { color: #1a1a1a; margin: 0; }
+.kenny-reminder .kr-body p { margin: 4px 0; }
+.kenny-reminder .kr-body strong { color: var(--color-warning, #d84315); }
+@media print {
+  .kenny-reminder { background: transparent !important; border-color: #333 !important; border-left-color: #333 !important; }
+  .kenny-reminder .kr-header, .kenny-reminder .kr-body strong { color: #000 !important; }
+}
+
+@page { size: letter; margin: 1in; }
+@page :left  { margin: 25mm; }
+@page :right { margin: 25mm; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #fafafa; }
+body { font-family: 'Century Schoolbook', 'Times New Roman', serif; color: #000; }
+.page { max-width: 720px; margin: 0 auto; padding: 70px 50px 40px 50px; background: #fff; }
+.work-space { min-height: 1.5in; margin: 8px 0 16px 28px; border-bottom: 1px solid #ccc; }
+.work-space.sm { min-height: 0.75in; }
+.work-space.lg { min-height: 2.5in; }
+.page-break { page-break-before: always; break-before: page; }
+@media print {
+  html, body { background: #fff; }
+  .page { max-width: none; padding: 0.7in 0.6in 0.5in 0.6in; margin: 0; box-shadow: none; }
+  .problem, .answer-block, .reminder, .parent-note, .example, .word-problem, .figure-container, .graph-container {
+    page-break-inside: avoid; break-inside: avoid; margin-bottom: 0;
+  }
+  .part-header, .directions, .problem-header, h1, h2, h3 { page-break-after: avoid; break-after: avoid; }
+  .work-space { min-height: 1.5in; border-bottom: 1px dashed #999; border-top: none; border-left: none; border-right: none; margin-bottom: 0.25in; }
+  .work-space.sm { min-height: 0.75in; }
+  .work-space.lg { min-height: 2.5in; }
+  .page-break { page-break-before: always; break-before: page; }
+  .footer { display: none !important; }
+}
+
+/* =========================================================================
+   theme-girl.css
+   ========================================================================= */
+:root {
+  --color-primary:       #c2185b;
+  --color-primary-dark:  #880e4f;
+  --color-accent:        #7b1fa2;
+  --color-header-border: #c2185b;
+  --color-final-answer:  #2e7d32;
+  --color-warning:       #d84315;
+  --color-parent-note:   #6a1b9a;
+  --color-tag-bg:        transparent;
+  --color-tag-border:    #c2185b;
+  --color-tag-text:      #c2185b;
+  --color-muted:         #555;
+  --color-rule:          #ccc;
+}
+
+/* =========================================================================
+   level-high.css
+   ========================================================================= */
+body { font-family: 'Source Serif Pro', 'Georgia', 'Times New Roman', serif; font-size: 10.5pt; line-height: 1.55; }
+h1, h2, h3, .part-header { font-family: 'Libre Baskerville', 'Georgia', serif; }
+.header { text-align: center; padding-bottom: 10px; margin-bottom: 16px; border-bottom: 2px solid var(--color-header-border); }
+.school-name { font-size: 9pt; letter-spacing: 4px; color: var(--color-primary); font-weight: bold; }
+.subject-tag, .key-tag { display: inline-block; padding: 2px 10px; font-size: 8pt; letter-spacing: 2px; margin: 5px 3px 7px 3px; font-weight: bold; }
+.subject-tag { border: 1.5px solid var(--color-primary); color: var(--color-primary); }
+.key-tag { border: 1.5px solid var(--color-warning); color: var(--color-warning); }
+h1 { font-size: 16pt; margin: 6px 0 8px 0; font-weight: bold; line-height: 1.3; }
+.info { display: flex; justify-content: space-between; font-size: 10pt; margin-top: 6px; }
+.standard { font-size: 8pt; font-style: italic; margin-top: 4px; color: var(--color-muted); }
+.part-header { font-size: 13pt; font-weight: bold; color: var(--color-primary); margin: 22px 0 6px 0; padding-bottom: 3px; border-bottom: 1.5px solid var(--color-primary); }
+.directions { font-size: 10pt; font-style: italic; color: #333; margin-bottom: 12px; line-height: 1.5; }
+.directions strong { color: #000; font-style: normal; }
+.problem { margin: 14px 0; font-size: 10.5pt; line-height: 1.6; padding-left: 8px; border-left: 3px solid var(--color-primary); }
+.q-num { display: inline-block; min-width: 26px; font-weight: bold; color: var(--color-primary); }
+.ans-line { display: inline-block; border-bottom: 1.5px solid #000; min-width: 80px; height: 18px; margin: 0 4px; vertical-align: bottom; }
+.work-space { min-height: 120px; margin-left: 24px; margin-top: 6px; }
+.word-problem .work-space { min-height: 140px; }
+.concept-box { border: 1.5px solid var(--color-accent); background: transparent; padding: 10px 14px; margin: 12px 0; font-size: 10pt; border-left-width: 4px; }
+.concept-box .title { font-weight: bold; color: var(--color-accent); margin-bottom: 4px; }
+.graph-container { margin: 12px auto; page-break-inside: avoid; break-inside: avoid; }
+.jxgbox { max-width: 500px; height: 350px; margin: 0 auto; border: 1px solid #ccc; }
+.analysis-table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 10pt; }
+.analysis-table th, .analysis-table td { border: 1.5px solid #333; padding: 6px 10px; text-align: left; }
+.analysis-table th { background: transparent; color: var(--color-primary); font-weight: bold; }
+.example { border: 2px solid var(--color-final-answer); padding: 12px 16px; margin: 14px 0; }
+.example-title { font-weight: bold; color: var(--color-final-answer); margin-bottom: 6px; font-size: 11pt; }
+.example-solution { border-left: 3px solid var(--color-final-answer); padding-left: 12px; margin-top: 8px; font-size: 10pt; }
+.footer { text-align: center; font-size: 8pt; color: #666; border-top: 1px solid var(--color-rule); margin-top: 20px; padding-top: 6px; }
+.answer-block { margin: 14px 0; padding: 10px 14px; border: 1px solid #ddd; border-radius: 4px; }
+.problem-header { font-weight: bold; color: var(--color-primary); font-size: 11pt; margin-bottom: 5px; }
+.problem-text { font-size: 10pt; padding: 6px 10px; background: #f7f7f7; border-left: 3px solid #bbb; margin-bottom: 8px; line-height: 1.5; }
+.concept-tag { display: inline-block; font-size: 8pt; padding: 2px 8px; margin: 2px 3px 5px 0; border: 1px solid var(--color-tag-border); color: var(--color-tag-text); border-radius: 10px; }
+.solution { margin: 6px 0; padding-left: 8px; border-left: 3px solid var(--color-final-answer); }
+.solution-step { margin: 4px 0; font-size: 10pt; line-height: 1.6; }
+.final-answer { display: inline-block; border: 2px solid var(--color-final-answer); color: var(--color-final-answer); font-weight: bold; padding: 4px 12px; border-radius: 4px; margin-top: 6px; font-size: 11pt; }
+
+/* =========================================================================
+   editor-widget.css
+   ========================================================================= */
+:root {
+  --ed-accent:        #1565c0;
+  --ed-bg:            #fff;
+  --ed-border:        #e0e0e0;
+  --ed-shadow:        rgba(0,0,0,0.12);
+  --ed-sticky-bg:     #fef9c3;
+  --ed-sticky-border: #f59e0b;
+  --ed-sticky-handle: #fde68a;
+  --ed-bar-bg:        #1e2d3d;
+  --ed-bar-text:      #e2e8f0;
+  --ed-btn-hover:     rgba(255,255,255,0.12);
+  --ed-highlight:     rgba(245,158,11,0.25);
+  --ed-radius:        5px;
+}
+.ed-commentable { position: relative; }
+.ed-comment-btn { position: absolute; top: 3px; right: -30px; width: 22px; height: 22px; padding: 0; display: inline-flex; align-items: center; justify-content: center; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 4px; color: #64748b; cursor: pointer; font-size: 12px; opacity: 0; transition: opacity 0.15s ease, color 0.15s ease, background 0.15s ease; z-index: 10; line-height: 1; }
+.ed-commentable:hover .ed-comment-btn { opacity: 0.75; }
+.ed-comment-btn:hover { opacity: 1 !important; color: var(--ed-accent); background: #e0ecff; border-color: var(--ed-accent); }
+.ed-comment-btn.has-comment { opacity: 1; background: #fef3c7; border-color: #f59e0b; color: #92400e; }
+.ed-commentable.has-ed-comment { border-left: 3px solid #f59e0b; padding-left: 10px; background: rgba(245,158,11,0.05); border-radius: 3px; }
+.ed-dot { position: absolute; top: 1px; right: -12px; width: 7px; height: 7px; border-radius: 50%; background: #3b82f6; pointer-events: none; }
+.ed-dot[hidden] { display: none; }
+.ed-comment-box { margin: 6px 0 10px; padding: 10px 12px; background: #fafafa; border: 1px solid #e2e8f0; border-radius: var(--ed-radius); box-shadow: 0 2px 8px var(--ed-shadow); display: none; z-index: 20; }
+.ed-comment-box.open { display: block; }
+.ed-comment-box textarea { width: 100%; min-height: 64px; padding: 7px 9px; background: #fff; border: 1px solid #d1d5db; border-radius: 4px; color: #1e293b; font-family: 'Times New Roman', serif; font-size: 11pt; line-height: 1.5; resize: vertical; }
+.ed-comment-box textarea:focus { outline: none; border-color: var(--ed-accent); box-shadow: 0 0 0 2px rgba(21,101,192,0.15); }
+.ed-comment-box-actions { margin-top: 6px; display: flex; gap: 6px; justify-content: flex-end; }
+.ed-comment-box-actions button { padding: 4px 12px; font-size: 11px; cursor: pointer; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 4px; color: #475569; transition: all 0.12s ease; font-family: 'Times New Roman', serif; }
+.ed-comment-box-actions button.ed-save { background: var(--ed-accent); color: #fff; border-color: var(--ed-accent); }
+.ed-comment-box-actions button:hover { background: #e2e8f0; }
+.ed-comment-box-actions button.ed-save:hover { background: #0d47a1; }
+mark.ed-annotation { background: rgba(245,158,11,0.25); color: inherit; padding: 0 2px; border-radius: 2px; border-bottom: 2px solid #f59e0b; cursor: pointer; }
+.ed-sel-popup { position: absolute; z-index: 1010; background: #1e2d3d; border: 1px solid #334155; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.25); padding: 3px; }
+.ed-sel-btn { padding: 5px 10px; font-size: 12px; cursor: pointer; background: transparent; border: none; color: #e2e8f0; display: inline-flex; align-items: center; gap: 5px; border-radius: 4px; white-space: nowrap; font-family: inherit; }
+.ed-sel-btn:hover { background: rgba(255,255,255,0.1); color: #fbbf24; }
+.ed-sel-comment-box { position: absolute; width: 300px; z-index: 1011; background: #fafafa; border: 1px solid #e2e8f0; border-radius: var(--ed-radius); box-shadow: 0 4px 16px rgba(0,0,0,0.18); padding: 10px 12px; }
+.ed-sel-preview { font-size: 11px; color: #64748b; margin-bottom: 8px; padding: 5px 8px; background: rgba(245,158,11,0.1); border-left: 2px solid #f59e0b; border-radius: 3px; line-height: 1.4; font-family: 'Times New Roman', serif; }
+.ed-sticky { position: absolute; z-index: 990; width: 240px; min-height: 110px; background: var(--ed-sticky-bg); border: 1px solid var(--ed-sticky-border); border-radius: 5px; box-shadow: 2px 3px 8px rgba(0,0,0,0.18); display: flex; flex-direction: column; }
+.ed-sticky-handle { padding: 5px 9px; cursor: move; font-size: 10px; font-weight: 700; color: #78350f; background: var(--ed-sticky-handle); border-bottom: 1px solid var(--ed-sticky-border); border-radius: 5px 5px 0 0; user-select: none; display: flex; align-items: center; justify-content: space-between; }
+.ed-sticky textarea { flex: 1; padding: 7px 9px; border: none; background: transparent; color: #1e293b; font-family: 'Times New Roman', serif; font-size: 11pt; line-height: 1.4; resize: none; outline: none; min-height: 70px; }
+.ed-sticky-close { background: transparent; border: none; color: #92400e; cursor: pointer; font-size: 14px; line-height: 1; padding: 0; }
+.ed-sticky-close:hover { color: #b91c1c; }
+.ed-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000; height: 38px; background: var(--ed-bar-bg); border-top: 1px solid #334155; display: flex; align-items: center; gap: 4px; padding: 0 12px; box-shadow: 0 -2px 8px rgba(0,0,0,0.2); font-family: ui-sans-serif, system-ui, sans-serif; }
+.ed-bar-label { font-size: 10px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.08em; margin-right: 6px; white-space: nowrap; }
+.ed-bar-btn { height: 26px; padding: 0 10px; font-size: 11px; cursor: pointer; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; color: var(--ed-bar-text); display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; transition: all 0.12s ease; font-family: inherit; }
+.ed-bar-btn:hover { background: var(--ed-btn-hover); border-color: rgba(255,255,255,0.25); }
+.ed-bar-btn.ed-bar-primary { background: var(--ed-accent); border-color: var(--ed-accent); color: #fff; }
+.ed-bar-btn.ed-bar-primary:hover { background: #0d47a1; border-color: #0d47a1; }
+.ed-bar-count { background: #3b82f6; color: #fff; border-radius: 9px; font-size: 10px; font-weight: 700; min-width: 16px; height: 16px; display: inline-flex; align-items: center; justify-content: center; padding: 0 4px; }
+.ed-bar-sep { width: 1px; height: 20px; background: rgba(255,255,255,0.12); margin: 0 4px; }
+.ed-bar-spacer { flex: 1; }
+.ed-bar-status { font-size: 10px; color: #64748b; white-space: nowrap; }
+body { padding-bottom: 46px; }
+body.ed-dragover .page { outline: 3px dashed var(--ed-accent); outline-offset: 4px; }
+.ed-video-embed { margin: 12px 0; position: relative; padding-top: 56.25%; border-radius: var(--ed-radius); overflow: hidden; border: 1px solid var(--ed-border); }
+.ed-video-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+@media print {
+  .ed-bar, .ed-comment-btn, .ed-comment-box, .ed-dot, .ed-sticky, .ed-sel-popup, .ed-sel-comment-box { display: none !important; }
+  body { padding-bottom: 0 !important; }
+  .ed-commentable.has-ed-comment { border-left: none !important; padding-left: 0 !important; background: transparent !important; }
+  mark.ed-annotation { background: transparent !important; border-bottom: none !important; }
+}
+
+/* =========================================================================
+   Domain/Range Notes Table (special for this worksheet)
+   ========================================================================= */
+.notes-section {
+  border: 1.5px solid var(--color-accent);
+  border-left: 5px solid var(--color-accent);
+  border-radius: 6px;
+  padding: 12px 16px 10px 16px;
+  margin: 0 0 20px 0;
+  background: #fafafa;
+  page-break-inside: avoid;
+  break-inside: avoid;
+  font-size: 10pt;
+}
+.notes-section .notes-title {
+  font-weight: bold;
+  color: var(--color-accent);
+  font-size: 11pt;
+  margin-bottom: 10px;
+  letter-spacing: 0.03em;
+}
+.notes-section table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 8px;
+  font-size: 9.5pt;
+}
+.notes-section table th,
+.notes-section table td {
+  border: 1.2px solid #bbb;
+  padding: 4px 10px;
+  text-align: center;
+}
+.notes-section table th {
+  color: var(--color-accent);
+  font-weight: bold;
+  background: transparent;
+}
+.notes-section .note-item {
+  margin: 4px 0;
+  line-height: 1.6;
+}
+.notes-section .note-item strong { color: var(--color-primary); }
+@media print {
+  .notes-section { background: transparent !important; }
+}
+
+/* Triangle method tip box */
+.tip-box {
+  display: inline-block;
+  border: 1px dashed var(--color-primary);
+  border-radius: 5px;
+  padding: 5px 12px;
+  font-size: 9.5pt;
+  color: #333;
+  margin: 6px 0 4px 0;
+  line-height: 1.5;
+}
+.tip-box strong { color: var(--color-primary); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="school-name">NEWTON SCHOOL</div>
+    <span class="subject-tag">PRE-CALCULUS</span>
+    <span class="subject-tag">HOMEWORK</span>
+    <h1>Inverse Trig Functions: Domain, Range &amp; Evaluation</h1>
+    <div class="info">
+      <span><strong>Student:</strong> Anne Takemoto</span>
+      <span><strong>Date:</strong> 2026-05-12</span>
+    </div>
+    <div class="standard">
+      <strong>Standard:</strong> CCSS.MATH.CONTENT.HSF-BF.B.4 &mdash;
+      Find inverse functions. Solve equations of the form \(f(x) = c\) for a simple function \(f\) that has an inverse and write an expression for the inverse. Evaluate and interpret inverse trigonometric expressions using domain and range constraints.
+    </div>
+  </div>
+
+  <!-- KENNY'S REMINDER BOX -->
+  <div class="kenny-reminder">
+    <div class="kr-header"><span class="kr-icon">🔔</span> Mr. Kenny's Key Point</div>
+    <div class="kr-body">
+      <p><strong>Domain &amp; Range</strong> determine whether you can just "cancel" inverse and trig &mdash; or whether you need to <strong>reduce the angle</strong> into the valid range first.</p>
+      <p>\(\sin^{-1}\): domain \([-1,1]\), range \([-\tfrac{\pi}{2}, \tfrac{\pi}{2}]\) &nbsp;·&nbsp;
+         \(\cos^{-1}\): domain \([-1,1]\), range \([0, \pi]\) &nbsp;·&nbsp;
+         \(\tan^{-1}\): domain \((-\infty,\infty)\), range \((-\tfrac{\pi}{2}, \tfrac{\pi}{2})\)</p>
+    </div>
+  </div>
+
+  <!-- NOTES SECTION -->
+  <div class="notes-section">
+    <div class="notes-title">Reference Notes &mdash; Inverse Trig: Domain, Range &amp; Key Rules</div>
+
+    <!-- Domain/Range table -->
+    <table>
+      <tr>
+        <th>Function</th>
+        <th>Domain (input)</th>
+        <th>Range (output angle)</th>
+        <th>Special values</th>
+      </tr>
+      <tr>
+        <td>\(\sin^{-1}(x)\)</td>
+        <td>\([-1,\, 1]\)</td>
+        <td>\(\left[-\dfrac{\pi}{2},\, \dfrac{\pi}{2}\right]\)</td>
+        <td>\(\sin^{-1}(0)=0,\;\sin^{-1}(1)=\tfrac{\pi}{2},\;\sin^{-1}(-1)=-\tfrac{\pi}{2}\)</td>
+      </tr>
+      <tr>
+        <td>\(\cos^{-1}(x)\)</td>
+        <td>\([-1,\, 1]\)</td>
+        <td>\([0,\, \pi]\)</td>
+        <td>\(\cos^{-1}(0)=\tfrac{\pi}{2},\;\cos^{-1}(1)=0,\;\cos^{-1}(-1)=\pi\)</td>
+      </tr>
+      <tr>
+        <td>\(\tan^{-1}(x)\)</td>
+        <td>\((-\infty,\,\infty)\)</td>
+        <td>\(\left(-\dfrac{\pi}{2},\, \dfrac{\pi}{2}\right)\)</td>
+        <td>\(\tan^{-1}(0)=0,\;\tan^{-1}(1)=\tfrac{\pi}{4},\;\tan^{-1}(-1)=-\tfrac{\pi}{4}\)</td>
+      </tr>
+    </table>
+
+    <div class="note-item">
+      <strong>Reference Triangle Method:</strong>
+      Draw a right triangle from the <em>inside</em> arc-function, then evaluate the <em>outside</em> trig.
+      E.g. for \(\cos(\sin^{-1}(\tfrac{3}{5}))\): let \(\theta = \sin^{-1}(\tfrac{3}{5})\), so \(\sin\theta = \tfrac{3}{5}\).
+      Triangle: opp = 3, hyp = 5, adj = 4. Then \(\cos\theta = \tfrac{4}{5}\).
+    </div>
+
+    <div class="note-item">
+      <strong>Reduction Rule (range-aware):</strong>
+      \(\sin^{-1}(\sin\theta) = \theta\) <em>only if</em> \(\theta \in [-\tfrac{\pi}{2}, \tfrac{\pi}{2}]\).
+      If \(\theta\) is <em>outside</em> the range, find the angle <em>inside</em> the range with the same sine value.
+      Example: \(\sin^{-1}(\sin(\tfrac{2\pi}{3})) = \sin^{-1}(\tfrac{\sqrt{3}}{2}) = \tfrac{\pi}{3}\) (not \(\tfrac{2\pi}{3}\)).
+    </div>
+
+    <div class="note-item">
+      <strong>Identity:</strong> \(\sin^{-1}(x) + \cos^{-1}(x) = \dfrac{\pi}{2}\) for all \(x \in [-1,1]\).
+    </div>
+
+    <div class="tip-box">
+      <strong>Tip:</strong> Always check: is the angle in the <em>output range</em> of the inverse function? If no &rarr; reduce first.
+    </div>
+  </div>
+
+  <!-- ===================================================
+       PART A: Composite Evaluation (Reference Triangle)
+       =================================================== -->
+  <div class="part-header">Part A &mdash; Composite Evaluation Using Reference Triangles</div>
+  <div class="directions">
+    Use the reference triangle method. Draw a right triangle based on the inner inverse trig expression, label all three sides, then evaluate the outer trig function. <strong>Show all work.</strong>
+  </div>
+
+  <div class="problem ed-commentable">
+    <span class="q-num">1.</span>
+    Find the exact value of \(\cos\!\left(\sin^{-1}\!\left(\dfrac{3}{5}\right)\right)\).
+    <div class="work-space"></div>
+  </div>
+
+  <div class="problem ed-commentable">
+    <span class="q-num">2.</span>
+    Find the exact value of \(\sin\!\left(\cos^{-1}\!\left(\dfrac{2}{3}\right)\right)\).
+    <div class="work-space"></div>
+  </div>
+
+  <div class="problem ed-commentable">
+    <span class="q-num">3.</span>
+    Find the exact value of \(\tan\!\left(\sin^{-1}\!\left(\dfrac{3}{5}\right)\right)\).
+    <div class="work-space"></div>
+  </div>
+
+  <div class="problem ed-commentable">
+    <span class="q-num">4.</span>
+    Find the exact value of \(\cos\!\left(\tan^{-1}\!\left(\dfrac{4}{3}\right)\right)\).
+    <div class="work-space"></div>
+  </div>
+
+  <!-- PAGE BREAK before Part B -->
+  <div class="page-break"></div>
+
+  <div class="problem ed-commentable">
+    <span class="q-num">5.</span>
+    Write a simplified expression for \(\sin\!\left(\tan^{-1}\!\left(\dfrac{x}{2}\right)\right)\) in terms of \(x\).
+    <div class="work-space"></div>
+  </div>
+
+  <div class="problem ed-commentable">
+    <span class="q-num">6.</span>
+    Find the exact value of \(\sec\!\left(\cos^{-1}\!\left(\dfrac{1}{4}\right)\right)\).
+    <em>(Hint: recall \(\sec\theta = \dfrac{1}{\cos\theta}\).)</em>
+    <div class="work-space"></div>
+  </div>
+
+  <!-- ===================================================
+       PART B: Range-Aware Reduction
+       =================================================== -->
+  <div class="part-header">Part B &mdash; Range-Aware Reduction</div>
+  <div class="directions">
+    Evaluate each expression carefully. Check whether the angle is inside the valid output range before simplifying. If it is outside the range, reduce it to an equivalent angle inside the range. <strong>Show your reasoning.</strong>
+  </div>
+
+  <div class="problem ed-commentable">
+    <span class="q-num">7.</span>
+    Evaluate \(\sin^{-1}\!\left(\sin\!\left(\dfrac{\pi}{3}\right)\right)\).
+    <div class="work-space" style="min-height:1.2in;"></div>
+  </div>
+
+  <div class="problem ed-commentable">
+    <span class="q-num">8.</span>
+    Evaluate \(\sin^{-1}\!\left(\sin\!\left(\dfrac{2\pi}{3}\right)\right)\).
+    <em>(Is \(\tfrac{2\pi}{3}\) in the range of \(\sin^{-1}\)?)</em>
+    <div class="work-space" style="min-height:1.2in;"></div>
+  </div>
+
+  <div class="problem ed-commentable">
+    <span class="q-num">9.</span>
+    Evaluate \(\cos^{-1}\!\left(\cos\!\left(\dfrac{7\pi}{6}\right)\right)\).
+    <div class="work-space" style="min-height:1.2in;"></div>
+  </div>
+
+  <div class="problem ed-commentable">
+    <span class="q-num">10.</span>
+    Evaluate \(\tan^{-1}\!\left(\tan\!\left(\pi\right)\right)\).
+    <em>(Note: \(\pi\) is outside the range of \(\tan^{-1}\).)</em>
+    <div class="work-space" style="min-height:1.2in;"></div>
+  </div>
+
+  <!-- PAGE BREAK before Part C -->
+  <div class="page-break"></div>
+
+  <div class="problem ed-commentable">
+    <span class="q-num">11.</span>
+    Evaluate \(\sin^{-1}\!\left(\cos\!\left(\dfrac{3\pi}{2}\right)\right)\).
+    <div class="work-space" style="min-height:1.2in;"></div>
+  </div>
+
+  <!-- ===================================================
+       PART C: Double Angle & Advanced
+       =================================================== -->
+  <div class="part-header">Part C &mdash; Double Angle &amp; Advanced Identities</div>
+  <div class="directions">
+    Apply double-angle or sum formulas. Let \(\theta\) equal the inner inverse trig expression, build a reference triangle, then use the relevant identity. <strong>Show every step.</strong>
+  </div>
+
+  <div class="problem ed-commentable">
+    <span class="q-num">12.</span>
+    Find the exact value of \(\tan\!\left(2\sin^{-1}\!\left(\dfrac{1}{3}\right)\right)\).
+    <em>(Use the double-angle formula: \(\tan(2\theta) = \dfrac{2\tan\theta}{1 - \tan^2\theta}\).)</em>
+    <div class="work-space"></div>
+  </div>
+
+  <div class="problem ed-commentable">
+    <span class="q-num">13.</span>
+    Find the exact value of \(\cos\!\left(2\tan^{-1}\!\left(\dfrac{1}{2}\right)\right)\).
+    <em>(Useful form: \(\cos(2\theta) = \dfrac{1 - \tan^2\theta}{1 + \tan^2\theta}\).)</em>
+    <div class="work-space"></div>
+  </div>
+
+  <div class="problem ed-commentable">
+    <span class="q-num">14.</span>
+    Find the exact value of \(\sin\!\left(\sin^{-1}(0.8) + \cos^{-1}(0.6)\right)\).
+    <em>(Let \(\alpha = \sin^{-1}(0.8)\) and \(\beta = \cos^{-1}(0.6)\). Use \(\sin(\alpha+\beta) = \sin\alpha\cos\beta + \cos\alpha\sin\beta\).)</em>
+    <div class="work-space"></div>
+  </div>
+
+  <div class="problem ed-commentable">
+    <span class="q-num">15.</span>
+    Prove that \(\sin^{-1}(x) + \cos^{-1}(x) = \dfrac{\pi}{2}\) for all \(x \in [-1, 1]\).
+    <em>(Hint: Let \(\theta = \sin^{-1}(x)\) and show \(\cos^{-1}(x) = \tfrac{\pi}{2} - \theta\).)</em>
+    <div class="work-space" style="min-height:1.5in;"></div>
+  </div>
+
+  <div class="footer">
+    Created by Newton School 2026-05-12 &copy; Copyright
+  </div>
+</div>
+
+<script>
+/* === inlined content of assets/editor-widget.js === */
+(function () {
+  'use strict';
+  var pageSlug = (function () {
+    var s = window.location.pathname.split('/').pop() || 'worksheet';
+    return s.replace(/\.[^.]+$/, '').replace(/[^a-zA-Z0-9_-]/g, '_').slice(0, 60);
+  })();
+  var C_PREFIX = 'hw_comment_' + pageSlug + '_';
+  var A_KEY    = 'hw_annot_' + pageSlug;
+  var S_KEY    = 'hw_sticky_' + pageSlug;
+  function lsGet(k) { try { return localStorage.getItem(k); } catch(e){ return null; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); } catch(e){} }
+  function lsRm(k)  { try { localStorage.removeItem(k); } catch(e){} }
+  function lsGetJSON(k) { try { return JSON.parse(lsGet(k) || '[]'); } catch(e){ return []; } }
+  function lsSetJSON(k, v) { lsSet(k, JSON.stringify(v)); }
+  function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  var counter = 0;
+  function nextBid() { return 'b' + (++counter); }
+  function wrapCommentable(el) {
+    if (el.classList.contains('ed-commentable')) return;
+    var bid = nextBid();
+    el.classList.add('ed-commentable');
+    el.setAttribute('data-bid', bid);
+    var btn = document.createElement('button');
+    btn.className = 'ed-comment-btn'; btn.type = 'button'; btn.title = 'Add comment'; btn.textContent = '✏';
+    btn.addEventListener('click', function () { toggleCommentBox(el, bid); });
+    el.appendChild(btn);
+    var dot = document.createElement('span');
+    dot.className = 'ed-dot'; dot.hidden = true;
+    el.appendChild(dot);
+    var saved = lsGet(C_PREFIX + bid);
+    if (saved && saved.trim()) { dot.hidden = false; btn.classList.add('has-comment'); el.classList.add('has-ed-comment'); }
+  }
+  function initCommentableBlocks() {
+    ['.problem','.answer-block','.example','.part-header','.word-problem'].forEach(function(sel){
+      document.querySelectorAll(sel).forEach(wrapCommentable);
+    });
+  }
+  function toggleCommentBox(el, bid) {
+    var existing = el.querySelector('.ed-comment-box');
+    if (existing) { existing.classList.toggle('open'); if (existing.classList.contains('open')) existing.querySelector('textarea').focus(); return; }
+    var saved = lsGet(C_PREFIX + bid) || '';
+    var box = document.createElement('div');
+    box.className = 'ed-comment-box open';
+    box.innerHTML = '<textarea placeholder="Comment on this block..."></textarea><div class="ed-comment-box-actions"><button type="button" class="ed-cancel">Cancel</button><button type="button" class="ed-save">Save</button></div>';
+    el.appendChild(box);
+    var ta = box.querySelector('textarea'); ta.value = saved; ta.focus();
+    box.querySelector('.ed-cancel').addEventListener('click', function () { box.classList.remove('open'); });
+    box.querySelector('.ed-save').addEventListener('click', function () { saveBlockComment(el, bid, ta.value.trim()); box.classList.remove('open'); updateBarStatus(); });
+  }
+  function saveBlockComment(el, bid, txt) {
+    var dot = el.querySelector('.ed-dot'); var btn = el.querySelector('.ed-comment-btn');
+    if (txt) { lsSet(C_PREFIX + bid, txt); if (dot) dot.hidden = false; if (btn) btn.classList.add('has-comment'); el.classList.add('has-ed-comment'); }
+    else { lsRm(C_PREFIX + bid); if (dot) dot.hidden = true; if (btn) btn.classList.remove('has-comment'); el.classList.remove('has-ed-comment'); }
+    updateBarStatus();
+  }
+  var _selPopup = null;
+  function hideSelPopup() { if (_selPopup) { _selPopup.remove(); _selPopup = null; } }
+  document.addEventListener('mouseup', function (e) {
+    if (e.target.closest('.ed-sel-popup, .ed-comment-box, .ed-sticky, .ed-bar, .ed-comment-btn')) return;
+    setTimeout(function () {
+      var sel = window.getSelection();
+      if (!sel || sel.isCollapsed || !sel.rangeCount) { hideSelPopup(); return; }
+      var text = sel.toString().trim();
+      if (!text || text.length < 2) { hideSelPopup(); return; }
+      var range = sel.getRangeAt(0);
+      var container = range.commonAncestorContainer;
+      var node = container.nodeType === 1 ? container : container.parentElement;
+      if (!node || !node.closest('.page, article')) return;
+      var rect = range.getBoundingClientRect();
+      showSelPopup(rect, text);
+    }, 10);
+  });
+  document.addEventListener('mousedown', function (e) { if (!e.target.closest('.ed-sel-popup')) hideSelPopup(); });
+  function showSelPopup(rect, text) {
+    hideSelPopup();
+    var p = document.createElement('div'); p.className = 'ed-sel-popup';
+    p.style.top = (window.scrollY + rect.bottom + 6) + 'px'; p.style.left = (window.scrollX + rect.left) + 'px';
+    var btn = document.createElement('button'); btn.className = 'ed-sel-btn'; btn.textContent = '✏ Annotate selection';
+    btn.addEventListener('click', function () { openSelCommentBox(rect, text); hideSelPopup(); });
+    p.appendChild(btn); document.body.appendChild(p); _selPopup = p;
+  }
+  function openSelCommentBox(rect, selectedText) {
+    var box = document.createElement('div'); box.className = 'ed-sel-comment-box';
+    box.style.top = (window.scrollY + rect.bottom + 6) + 'px';
+    box.style.left = Math.min(window.scrollX + rect.left, window.scrollX + window.innerWidth - 320) + 'px';
+    var preview = selectedText.length > 80 ? selectedText.slice(0, 80) + '…' : selectedText;
+    box.innerHTML = '<div class="ed-sel-preview">📌 "' + esc(preview) + '"</div><textarea placeholder="Annotate this selection..."></textarea><div class="ed-comment-box-actions"><button type="button" class="ed-cancel">Cancel</button><button type="button" class="ed-save">Save</button></div>';
+    document.body.appendChild(box);
+    var ta = box.querySelector('textarea'); ta.focus();
+    box.querySelector('.ed-cancel').addEventListener('click', function () { box.remove(); });
+    box.querySelector('.ed-save').addEventListener('click', function () {
+      var txt = ta.value.trim(); if (!txt) { box.remove(); return; }
+      var id = 'a' + Date.now() + Math.random().toString(36).slice(2, 5);
+      var list = lsGetJSON(A_KEY); list.push({ id: id, text: selectedText, comment: txt, ts: Date.now() }); lsSetJSON(A_KEY, list);
+      highlightAnnotation(id, selectedText); box.remove(); updateBarStatus();
+    });
+  }
+  function highlightAnnotation(id, text) {
+    var page = document.querySelector('.page, article'); if (!page) return;
+    var walker = document.createTreeWalker(page, NodeFilter.SHOW_TEXT, null); var node;
+    while ((node = walker.nextNode())) {
+      var idx = node.nodeValue.indexOf(text);
+      if (idx !== -1) {
+        try {
+          var range = document.createRange(); range.setStart(node, idx); range.setEnd(node, idx + text.length);
+          var mark = document.createElement('mark'); mark.className = 'ed-annotation'; mark.setAttribute('data-aid', id); mark.title = 'Annotated — click to see comment';
+          range.surroundContents(mark);
+          mark.addEventListener('click', function () { var a = lsGetJSON(A_KEY).find(function (x) { return x.id === id; }); if (a) alert('Annotation:\n' + a.comment); });
+        } catch (e) {}
+        break;
+      }
+    }
+  }
+  lsGetJSON(A_KEY).forEach(function (a) { highlightAnnotation(a.id, a.text); });
+  function createSticky(x, y, text) {
+    var id = 's' + Date.now() + Math.random().toString(36).slice(2, 5);
+    var note = buildStickyDOM(id, x, y, text || '');
+    document.body.appendChild(note);
+    var list = lsGetJSON(S_KEY); list.push({ id: id, x: x, y: y, text: text || '' }); lsSetJSON(S_KEY, list);
+    var ta = note.querySelector('textarea'); if (ta) ta.focus();
+    updateBarStatus(); return note;
+  }
+  function buildStickyDOM(id, x, y, text) {
+    var note = document.createElement('div'); note.className = 'ed-sticky'; note.setAttribute('data-sid', id);
+    note.style.top = y + 'px'; note.style.left = x + 'px';
+    note.innerHTML = '<div class="ed-sticky-handle">📌 Note <button class="ed-sticky-close" title="Delete">✕</button></div><textarea placeholder="Free note..."></textarea>';
+    var ta = note.querySelector('textarea'); ta.value = text;
+    ta.addEventListener('input', function () {
+      var list = lsGetJSON(S_KEY); var item = list.find(function (s) { return s.id === id; });
+      if (item) { item.text = ta.value; lsSetJSON(S_KEY, list); }
+      clearTimeout(ta._t); ta._t = setTimeout(updateBarStatus, 300);
+    });
+    note.querySelector('.ed-sticky-close').addEventListener('click', function () { deleteSticky(id); });
+    makeDraggable(note, note.querySelector('.ed-sticky-handle'), id); return note;
+  }
+  function makeDraggable(el, handle, id) {
+    var sx, sy, ox, oy, dragging = false;
+    handle.addEventListener('mousedown', function (e) {
+      if (e.target.classList.contains('ed-sticky-close')) return;
+      dragging = true; sx = e.pageX; sy = e.pageY; ox = parseInt(el.style.left) || 0; oy = parseInt(el.style.top) || 0; e.preventDefault();
+    });
+    document.addEventListener('mousemove', function (e) { if (!dragging) return; el.style.left = Math.max(0, ox + (e.pageX - sx)) + 'px'; el.style.top = Math.max(0, oy + (e.pageY - sy)) + 'px'; });
+    document.addEventListener('mouseup', function () {
+      if (!dragging) return; dragging = false;
+      var list = lsGetJSON(S_KEY); var item = list.find(function (s) { return s.id === id; });
+      if (item) { item.x = parseInt(el.style.left) || 0; item.y = parseInt(el.style.top) || 0; lsSetJSON(S_KEY, list); }
+    });
+  }
+  function deleteSticky(id) {
+    lsSetJSON(S_KEY, lsGetJSON(S_KEY).filter(function (s) { return s.id !== id; }));
+    var note = document.querySelector('.ed-sticky[data-sid="' + id + '"]'); if (note) note.remove(); updateBarStatus();
+  }
+  lsGetJSON(S_KEY).forEach(function (s) { document.body.appendChild(buildStickyDOM(s.id, s.x, s.y, s.text)); });
+  function addSticky() { var x = window.scrollX + Math.max(60, window.innerWidth / 2 - 120); var y = window.scrollY + 100; createSticky(x, y, ''); }
+  function countAllComments() {
+    var n = 0;
+    for (var i = 0; i < localStorage.length; i++) { var k = localStorage.key(i); if (k && k.indexOf(C_PREFIX) === 0 && (lsGet(k) || '').trim()) n++; }
+    n += lsGetJSON(A_KEY).length;
+    lsGetJSON(S_KEY).forEach(function (s) { if (s.text && s.text.trim()) n++; });
+    return n;
+  }
+  function updateBarStatus() {
+    var n = countAllComments();
+    var countEl = document.getElementById('ed-bar-count'); if (countEl) countEl.textContent = n;
+    var statusEl = document.getElementById('ed-bar-status'); if (statusEl) statusEl.textContent = n > 0 ? n + ' comment' + (n !== 1 ? 's' : '') + ' saved' : 'No comments yet';
+  }
+  function copyAllComments() {
+    var items = [];
+    document.querySelectorAll('.ed-commentable[data-bid]').forEach(function (el) {
+      var bid = el.getAttribute('data-bid'); var val = (lsGet(C_PREFIX + bid) || '').trim(); if (!val) return;
+      var clone = el.cloneNode(true); clone.querySelectorAll('.ed-comment-btn, .ed-dot, .ed-comment-box').forEach(function (n) { n.remove(); });
+      var ctx = (clone.innerText || clone.textContent || '').trim().slice(0, 200);
+      items.push({ type: 'block', ctx: ctx, comment: val });
+    });
+    lsGetJSON(A_KEY).forEach(function (a) { items.push({ type: 'annotation', ctx: a.text.slice(0, 200), comment: a.comment }); });
+    lsGetJSON(S_KEY).forEach(function (s) { if (s.text && s.text.trim()) items.push({ type: 'sticky', ctx: '(free note)', comment: s.text.trim() }); });
+    if (items.length === 0) { alert('No comments to copy.'); return; }
+    var out = '[Homework Comments] ' + document.title + '\n(' + items.length + ' comment' + (items.length !== 1 ? 's' : '') + ')\n\n';
+    items.forEach(function (it, i) { out += '--- #' + (i + 1) + ' [' + it.type + '] ---\nContext: ' + it.ctx.replace(/\n+/g, ' / ') + '\nComment: ' + it.comment + '\n\n'; });
+    out += '---\nPlease apply feedback to the source file.\n';
+    navigator.clipboard.writeText(out).then(function () {
+      var btn = document.getElementById('ed-bar-copy'); if (btn) { var orig = btn.textContent; btn.textContent = 'Copied!'; setTimeout(function () { btn.textContent = orig; }, 1800); }
+    }).catch(function (err) { alert('Copy failed: ' + err.message); });
+  }
+  function clearAllComments() {
+    var btn = document.getElementById('ed-bar-clear'); if (!btn) return;
+    if (btn.getAttribute('data-armed') !== '1') {
+      btn.setAttribute('data-armed', '1'); var orig = btn.textContent; btn.textContent = 'Click again to confirm';
+      setTimeout(function () { btn.removeAttribute('data-armed'); btn.textContent = orig; }, 3000); return;
+    }
+    btn.removeAttribute('data-armed');
+    var toRm = []; for (var i = 0; i < localStorage.length; i++) { var k = localStorage.key(i); if (k && k.indexOf(C_PREFIX) === 0) toRm.push(k); }
+    toRm.forEach(function (k) { lsRm(k); }); lsRm(A_KEY); lsRm(S_KEY);
+    document.querySelectorAll('.ed-commentable').forEach(function (el) {
+      el.classList.remove('has-ed-comment');
+      var dot = el.querySelector('.ed-dot'); var cbtn = el.querySelector('.ed-comment-btn'); var box = el.querySelector('.ed-comment-box');
+      if (dot) dot.hidden = true; if (cbtn) cbtn.classList.remove('has-comment'); if (box) box.remove();
+    });
+    document.querySelectorAll('mark.ed-annotation').forEach(function (mark) { var p = mark.parentNode; while (mark.firstChild) p.insertBefore(mark.firstChild, mark); p.removeChild(mark); });
+    document.querySelectorAll('.ed-sticky').forEach(function (n) { n.remove(); });
+    updateBarStatus();
+  }
+  function buildBar() {
+    var bar = document.createElement('div'); bar.className = 'ed-bar'; bar.id = 'ed-bar';
+    bar.innerHTML = '<span class="ed-bar-label">Editor</span><button class="ed-bar-btn ed-bar-primary" id="ed-bar-sticky" title="Add a floating sticky note">+ Note</button><button class="ed-bar-btn" id="ed-bar-img" title="Insert image">+ Image</button><span class="ed-bar-sep"></span><button class="ed-bar-btn" id="ed-bar-copy" title="Copy all comments to clipboard">Copy comments</button><button class="ed-bar-btn" id="ed-bar-clear" title="Clear all comments">Clear all</button><span class="ed-bar-spacer"></span><span class="ed-bar-status" id="ed-bar-status">No comments yet</span><span class="ed-bar-sep"></span><span class="ed-bar-count" id="ed-bar-count">0</span>';
+    document.body.appendChild(bar);
+    document.getElementById('ed-bar-sticky').addEventListener('click', addSticky);
+    document.getElementById('ed-bar-img').addEventListener('click', triggerImageFilePicker);
+    document.getElementById('ed-bar-copy').addEventListener('click', copyAllComments);
+    document.getElementById('ed-bar-clear').addEventListener('click', clearAllComments);
+  }
+  var _lastRange = null;
+  document.addEventListener('selectionchange', function () {
+    var sel = window.getSelection(); if (sel && sel.rangeCount) {
+      var r = sel.getRangeAt(0); var node = r.commonAncestorContainer; var el = node.nodeType === 1 ? node : node.parentElement;
+      if (el && el.closest('.page')) _lastRange = r.cloneRange();
+    }
+  });
+  document.addEventListener('paste', function (e) {
+    var items = (e.clipboardData || {}).items; if (!items) return;
+    for (var i = 0; i < items.length; i++) { if (items[i].type.indexOf('image') === 0) { e.preventDefault(); var blob = items[i].getAsFile(); readFileAsDataURL(blob, insertImageAtCursor); return; } }
+  });
+  var _page = null;
+  document.addEventListener('DOMContentLoaded', function () { _page = document.querySelector('.page'); });
+  document.addEventListener('dragover', function (e) { if (e.dataTransfer && e.dataTransfer.types && [].indexOf.call(e.dataTransfer.types, 'Files') >= 0) { e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; document.body.classList.add('ed-dragover'); } });
+  document.addEventListener('dragleave', function (e) { if (!e.relatedTarget) document.body.classList.remove('ed-dragover'); });
+  document.addEventListener('drop', function (e) {
+    document.body.classList.remove('ed-dragover');
+    var files = e.dataTransfer && e.dataTransfer.files; if (!files || !files.length) return;
+    var file = files[0]; if (!file.type.match(/^image\//)) return;
+    e.preventDefault(); _lastRange = null; readFileAsDataURL(file, insertImageAtCursor);
+  });
+  function triggerImageFilePicker() {
+    var input = document.createElement('input'); input.type = 'file'; input.accept = 'image/*'; input.style.display = 'none';
+    document.body.appendChild(input);
+    input.addEventListener('change', function () { if (!input.files || !input.files.length) { input.remove(); return; } readFileAsDataURL(input.files[0], insertImageAtCursor); input.remove(); });
+    input.click();
+  }
+  function readFileAsDataURL(blob, callback) { var reader = new FileReader(); reader.onload = function (ev) { callback(ev.target.result); }; reader.readAsDataURL(blob); }
+  function insertImageAtCursor(dataUrl) {
+    var page = document.querySelector('.page'); if (!page) return;
+    var img = document.createElement('img'); img.src = dataUrl;
+    img.style.cssText = 'max-width:100%;display:block;margin:10px 0;border:1px solid #e2e8f0;border-radius:4px;cursor:pointer;';
+    img.title = 'Click to remove image'; img.addEventListener('click', function () { if (confirm('Remove this image?')) img.remove(); });
+    if (_lastRange) { try { _lastRange.collapse(false); _lastRange.insertNode(img); var sel = window.getSelection(); var r = document.createRange(); r.setStartAfter(img); r.collapse(true); sel.removeAllRanges(); sel.addRange(r); _lastRange = r.cloneRange(); return; } catch (e) {} }
+    var problems = page.querySelectorAll('.problem'); var refNode = problems.length ? problems[problems.length - 1] : null;
+    var footer = page.querySelector('.footer');
+    if (footer) { page.insertBefore(img, footer); } else if (refNode && refNode.nextSibling) { page.insertBefore(img, refNode.nextSibling); } else { page.appendChild(img); }
+  }
+  document.addEventListener('paste', function (e) {
+    var text = (e.clipboardData || {}).getData('text/plain') || ''; if (!text) return;
+    var ytMatch = text.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+    if (ytMatch) { e.preventDefault(); insertVideoEmbed('https://www.youtube.com/embed/' + ytMatch[1]); }
+  });
+  function insertVideoEmbed(src) {
+    var page = document.querySelector('.page'); if (!page) return;
+    var wrap = document.createElement('div'); wrap.className = 'ed-video-embed';
+    var iframe = document.createElement('iframe'); iframe.src = src; iframe.allowFullscreen = true;
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    wrap.appendChild(iframe);
+    var footer = page.querySelector('.footer'); if (footer) { page.insertBefore(wrap, footer); } else { page.appendChild(wrap); }
+  }
+  function init() { initCommentableBlocks(); buildBar(); updateBarStatus(); }
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', function () { setTimeout(init, 500); }); } else { setTimeout(init, 500); }
+})();
+</script>
+</html>

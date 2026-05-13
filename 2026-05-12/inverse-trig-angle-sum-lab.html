@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inverse Trig & Angle Sum Lab — Anne Takemoto</title>
+<style>
+  :root {
+    --coral:    #fb7185;
+    --coral-lt: #ffe4e6;
+    --rose-dk:  #9f1239;
+    --bg:       #fff8f7;
+    --gold:     #f59e0b;
+    --purple:   #a855f7;
+    --navy:     #1e293b;
+    --slate:    #475569;
+    --white:    #ffffff;
+    --blue:     #3b82f6;
+    --blue-lt:  #dbeafe;
+    --pink-lt:  #fce7f3;
+    --green:    #10b981;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--navy);
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  header {
+    background: linear-gradient(135deg, var(--rose-dk) 0%, var(--coral) 50%, #fb923c 100%);
+    color: var(--white);
+    padding: 28px 32px 24px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(251,113,133,.35);
+  }
+  .brand {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: .85;
+    margin-bottom: 8px;
+  }
+  header h1 {
+    font-size: clamp(1.3rem, 3vw, 1.9rem);
+    font-weight: 800;
+    margin-bottom: 6px;
+    letter-spacing: -.3px;
+  }
+  header p {
+    font-size: .88rem;
+    opacity: .88;
+    font-weight: 400;
+  }
+
+  /* ── Mode tabs ── */
+  .mode-tabs {
+    display: flex;
+    gap: 0;
+    background: var(--white);
+    border-bottom: 2px solid var(--coral-lt);
+    padding: 0 32px;
+    overflow-x: auto;
+  }
+  .mode-tab {
+    padding: 14px 28px;
+    font-size: .88rem;
+    font-weight: 600;
+    color: var(--slate);
+    cursor: pointer;
+    border: none;
+    background: none;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    white-space: nowrap;
+    transition: color .2s, border-color .2s;
+  }
+  .mode-tab:hover { color: var(--coral); }
+  .mode-tab.active { color: var(--rose-dk); border-bottom-color: var(--coral); }
+
+  /* ── Panels ── */
+  .panel { display: none; padding: 32px; max-width: 960px; margin: 0 auto; }
+  .panel.active { display: block; }
+
+  /* ── Card / callout ── */
+  .callout {
+    background: var(--white);
+    border-left: 4px solid var(--coral);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 18px;
+    margin-bottom: 24px;
+    font-size: .87rem;
+    color: var(--slate);
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  }
+  .callout strong { color: var(--rose-dk); }
+
+  /* ── Controls row ── */
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 24px;
+    align-items: flex-end;
+  }
+  .ctrl-group label {
+    display: block;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-bottom: 6px;
+  }
+  .ctrl-group input[type=range] {
+    width: 200px;
+    accent-color: var(--coral);
+    cursor: pointer;
+  }
+  .ctrl-group select {
+    appearance: none;
+    background: var(--white);
+    border: 2px solid var(--coral-lt);
+    border-radius: 8px;
+    padding: 8px 32px 8px 12px;
+    font-size: .88rem;
+    font-weight: 600;
+    color: var(--navy);
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23fb7185' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+  }
+  .ctrl-group select:focus { outline: 2px solid var(--coral); }
+  .value-badge {
+    display: inline-block;
+    background: var(--coral-lt);
+    color: var(--rose-dk);
+    font-size: .82rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-left: 8px;
+    min-width: 52px;
+    text-align: center;
+  }
+
+  /* ── SVG canvas area ── */
+  .svg-wrap {
+    background: var(--white);
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.08);
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+    max-width: 600px;
+  }
+  svg { display: block; width: 100%; }
+
+  /* ── Result panel ── */
+  .result-box {
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.07);
+    padding: 22px 26px;
+    margin-top: 24px;
+  }
+  .result-box h3 {
+    font-size: .85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--slate);
+    margin-bottom: 14px;
+  }
+  .result-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+  }
+  .result-item {
+    background: var(--bg);
+    border-radius: 10px;
+    padding: 14px 18px;
+    border-top: 3px solid var(--coral);
+  }
+  .result-item .label { font-size: .75rem; font-weight: 700; text-transform: uppercase; color: var(--slate); margin-bottom: 6px; }
+  .result-item .val { font-size: 1.2rem; font-weight: 800; color: var(--rose-dk); }
+  .result-item .sub { font-size: .77rem; color: var(--slate); margin-top: 2px; }
+
+  /* ── Mode 2 layout ── */
+  .m2-layout { display: flex; gap: 28px; flex-wrap: wrap; }
+  .m2-left { flex: 1; min-width: 280px; max-width: 440px; }
+  .m2-right { flex: 1; min-width: 200px; }
+  .domain-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: .82rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .range-table { width: 100%; border-collapse: collapse; font-size: .85rem; margin-top: 12px; }
+  .range-table th { background: var(--coral-lt); color: var(--rose-dk); padding: 8px 12px; text-align: left; font-weight: 700; font-size: .8rem; text-transform: uppercase; }
+  .range-table td { padding: 8px 12px; border-bottom: 1px solid var(--coral-lt); }
+  .range-table tr:last-child td { border-bottom: none; }
+  .range-table tr.active-row td { background: #fff0f2; font-weight: 700; color: var(--rose-dk); }
+
+  /* ── Mode 3 ── */
+  .m3-layout { display: flex; gap: 28px; flex-wrap: wrap; }
+  .m3-left { flex: 1 1 340px; }
+  .m3-right { flex: 0 0 260px; }
+
+  .formula-breakdown {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 18px 22px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.07);
+    margin-top: 20px;
+  }
+  .formula-breakdown h3 { font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--slate); margin-bottom: 14px; }
+  .f-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-size: .9rem;
+    font-weight: 600;
+  }
+  .f-swatch { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; }
+  .f-label { flex: 1; color: var(--navy); }
+  .f-value { font-weight: 800; font-size: 1rem; min-width: 60px; text-align: right; }
+
+  .compute-btn {
+    background: linear-gradient(135deg, var(--coral) 0%, var(--rose-dk) 100%);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    padding: 12px 28px;
+    font-size: .9rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 16px;
+    letter-spacing: .3px;
+    box-shadow: 0 4px 12px rgba(251,113,133,.4);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .compute-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(251,113,133,.5); }
+  .compute-btn:active { transform: translateY(0); }
+
+  .verify-panel {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 16px 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.06);
+    font-size: .87rem;
+    margin-top: 16px;
+    display: none;
+  }
+  .verify-panel.shown { display: block; }
+  .verify-row { display: flex; justify-content: space-between; margin-bottom: 8px; align-items: center; }
+  .verify-row .vl { color: var(--slate); }
+  .verify-row .vv { font-weight: 700; color: var(--rose-dk); }
+  .match-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: .8rem;
+    font-weight: 700;
+    margin-top: 8px;
+  }
+  .match-badge.yes { background: #d1fae5; color: #065f46; }
+
+  /* ── step toggle ── */
+  .step-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 14px 0;
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--slate);
+    cursor: pointer;
+    user-select: none;
+  }
+  .step-toggle input[type=checkbox] { accent-color: var(--purple); width: 16px; height: 16px; cursor: pointer; }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .panel { padding: 20px 16px; }
+    .mode-tab { padding: 12px 16px; font-size: .82rem; }
+    header { padding: 22px 16px 18px; }
+    .ctrl-group input[type=range] { width: 150px; }
+    .m2-left, .m3-left { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Newton School</div>
+  <h1>Inverse Trig &amp; Angle Sum Lab</h1>
+  <p>Triangle method &middot; Restricted domain &middot; sin(&alpha;+&beta;) geometric proof &mdash; all interactive</p>
+</header>
+
+<!-- Mode tabs -->
+<div class="mode-tabs">
+  <button class="mode-tab active" onclick="setMode(1,this)">Mode 1 &mdash; Triangle Method</button>
+  <button class="mode-tab" onclick="setMode(2,this)">Mode 2 &mdash; Domain &amp; Graph</button>
+  <button class="mode-tab" onclick="setMode(3,this)">Mode 3 &mdash; sin(&alpha;+&beta;) Proof</button>
+</div>
+
+<!-- ══════════════════════════════════════
+     MODE 1 — Triangle Method
+════════════════════════════════════════ -->
+<div id="panel-1" class="panel active">
+  <div class="callout">
+    <strong>Triangle Method:</strong> Evaluate expressions like sin(cos⁻¹(3/5)) by drawing a reference right triangle.
+    Choose the inverse function, set the ratio — the missing side is computed automatically via Pythagorean theorem.
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-group">
+      <label>Inverse Function</label>
+      <select id="m1-func" onchange="drawTriangle()">
+        <option value="arcsin">sin⁻¹(x)</option>
+        <option value="arccos">cos⁻¹(x)</option>
+        <option value="arctan">tan⁻¹(x)</option>
+      </select>
+    </div>
+    <div class="ctrl-group">
+      <label>Input Ratio <span id="m1-ratio-val" class="value-badge">0.60</span></label>
+      <input type="range" id="m1-ratio" min="-100" max="100" value="60" step="1" oninput="updateRatioLabel();drawTriangle()">
+    </div>
+  </div>
+
+  <div class="svg-wrap">
+    <svg id="m1-svg" viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg"></svg>
+  </div>
+
+  <div class="result-box" id="m1-result">
+    <h3>All Six Trig Values at this Angle</h3>
+    <div class="result-grid" id="m1-grid"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     MODE 2 — Domain & Graph
+════════════════════════════════════════ -->
+<div id="panel-2" class="panel">
+  <div class="callout">
+    <strong>Restricted Domain:</strong> Inverse trig functions are only defined on restricted intervals so they pass the vertical line test.
+    Move the slider — the unit circle and graph both show which angle is <em>selected</em> (highlighted in the valid range).
+    Watch what happens when you drag outside the range!
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-group">
+      <label>Function</label>
+      <select id="m2-func" onchange="drawMode2()">
+        <option value="arcsin">sin⁻¹(x)</option>
+        <option value="arccos">cos⁻¹(x)</option>
+        <option value="arctan">tan⁻¹(x)</option>
+      </select>
+    </div>
+    <div class="ctrl-group">
+      <label>Input x <span id="m2-x-val" class="value-badge">0.50</span></label>
+      <input type="range" id="m2-x" min="-100" max="100" value="50" step="1" oninput="updateM2Label();drawMode2()">
+    </div>
+  </div>
+
+  <div class="m2-layout">
+    <div class="m2-left">
+      <div class="svg-wrap">
+        <svg id="m2-svg" viewBox="0 0 440 440" xmlns="http://www.w3.org/2000/svg"></svg>
+      </div>
+    </div>
+    <div class="m2-right">
+      <table class="range-table" id="m2-table">
+        <thead><tr><th>Function</th><th>Domain</th><th>Range</th></tr></thead>
+        <tbody>
+          <tr id="m2-row-arcsin"><td>sin⁻¹</td><td>[-1, 1]</td><td>[-π/2, π/2]</td></tr>
+          <tr id="m2-row-arccos"><td>cos⁻¹</td><td>[-1, 1]</td><td>[0, π]</td></tr>
+          <tr id="m2-row-arctan"><td>tan⁻¹</td><td>(-∞, ∞)</td><td>(-π/2, π/2)</td></tr>
+        </tbody>
+      </table>
+
+      <div class="result-box" style="margin-top:18px; padding:16px 18px;">
+        <h3>Output</h3>
+        <div id="m2-output" style="font-size:.95rem; line-height:1.8;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     MODE 3 — sin(α+β) Geometric Proof
+════════════════════════════════════════ -->
+<div id="panel-3" class="panel">
+  <div class="callout">
+    <strong>Geometric Proof of sin(&alpha;+&beta;):</strong> A unit-length segment PR in a rectangle reveals exactly why
+    sin(&alpha;+&beta;) = sin&alpha; cos&beta; + cos&alpha; sin&beta;.
+    Each colored segment corresponds to one term of the formula.
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-group">
+      <label>&alpha; (alpha) <span id="m3-a-val" class="value-badge">35°</span></label>
+      <input type="range" id="m3-alpha" min="5" max="80" value="35" step="1" oninput="updateM3Labels();drawMode3()">
+    </div>
+    <div class="ctrl-group">
+      <label>&beta; (beta) <span id="m3-b-val" class="value-badge">25°</span></label>
+      <input type="range" id="m3-beta" min="5" max="80" value="25" step="1" oninput="clampBeta();updateM3Labels();drawMode3()">
+    </div>
+  </div>
+
+  <label class="step-toggle">
+    <input type="checkbox" id="m3-steps" onchange="drawMode3()"> Show step-by-step segment labels
+  </label>
+
+  <div class="m3-layout">
+    <div class="m3-left">
+      <div class="svg-wrap">
+        <svg id="m3-svg" viewBox="0 0 520 480" xmlns="http://www.w3.org/2000/svg"></svg>
+      </div>
+    </div>
+    <div class="m3-right">
+      <div class="formula-breakdown">
+        <h3>Formula Breakdown</h3>
+        <div class="f-row" style="background:#eff6ff;">
+          <div class="f-swatch" style="background:var(--blue);"></div>
+          <div class="f-label">sin&alpha; cos&beta;</div>
+          <div class="f-value" id="f-sinacosb" style="color:var(--blue);">—</div>
+        </div>
+        <div class="f-row" style="background:#fdf2f8;">
+          <div class="f-swatch" style="background:var(--coral);"></div>
+          <div class="f-label">cos&alpha; sin&beta;</div>
+          <div class="f-value" id="f-cosasinb" style="color:var(--coral);">—</div>
+        </div>
+        <div class="f-row" style="background:#faf5ff;">
+          <div class="f-swatch" style="background:var(--purple);"></div>
+          <div class="f-label">sin(&alpha;+&beta;) total</div>
+          <div class="f-value" id="f-total" style="color:var(--purple);">—</div>
+        </div>
+        <div class="f-row" style="background:#fffbeb;">
+          <div class="f-swatch" style="background:var(--gold);"></div>
+          <div class="f-label">cos(&alpha;+&beta;)</div>
+          <div class="f-value" id="f-cos" style="color:var(--gold);">—</div>
+        </div>
+      </div>
+
+      <button class="compute-btn" onclick="computeM3()">Verify Both Formulas</button>
+      <div class="verify-panel" id="m3-verify">
+        <div class="verify-row"><span class="vl">sin(&alpha;+&beta;) direct</span><span class="vv" id="v-direct">—</span></div>
+        <div class="verify-row"><span class="vl">sin&alpha;cos&beta; + cos&alpha;sin&beta;</span><span class="vv" id="v-formula">—</span></div>
+        <div class="verify-row"><span class="vl">cos(&alpha;+&beta;) direct</span><span class="vv" id="v-cosd">—</span></div>
+        <div class="verify-row"><span class="vl">cos&alpha;cos&beta; − sin&alpha;sin&beta;</span><span class="vv" id="v-cosf">—</span></div>
+        <span class="match-badge yes">Match confirmed ✓</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     JavaScript
+════════════════════════════════════════ -->
+<script>
+// ── Helpers ──────────────────────────────────────────────────────────────
+function r(n, d=3) { return Math.round(n * 10**d) / 10**d; }
+function deg2rad(d) { return d * Math.PI / 180; }
+function fmt(n) { return n >= 0 ? n.toFixed(4) : n.toFixed(4); }
+
+function setMode(n, tab) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-'+n).classList.add('active');
+  tab.classList.add('active');
+  if (n === 1) drawTriangle();
+  if (n === 2) drawMode2();
+  if (n === 3) { updateM3Labels(); drawMode3(); }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// MODE 1 — Triangle Method
+// ─────────────────────────────────────────────────────────────────────────
+function updateRatioLabel() {
+  const v = +document.getElementById('m1-ratio').value / 100;
+  document.getElementById('m1-ratio-val').textContent = v.toFixed(2);
+}
+
+function drawTriangle() {
+  const func = document.getElementById('m1-func').value;
+  const raw = +document.getElementById('m1-ratio').value / 100;
+
+  // Clamp ratio domain
+  let ratio = raw;
+  if (func !== 'arctan') ratio = Math.max(-1, Math.min(1, raw));
+
+  const svg = document.getElementById('m1-svg');
+  svg.innerHTML = '';
+
+  const W = 520, H = 340;
+  const ns = 'http://www.w3.org/2000/svg';
+
+  function el(tag, attrs, text) {
+    const e = document.createElementNS(ns, tag);
+    for (let [k,v] of Object.entries(attrs)) e.setAttribute(k,v);
+    if (text !== undefined) e.textContent = text;
+    return e;
+  }
+
+  // Colors
+  const C = { coral:'#fb7185', blue:'#3b82f6', gold:'#f59e0b', purple:'#a855f7',
+               navy:'#1e293b', slate:'#64748b', green:'#10b981', bg:'#fff8f7' };
+
+  svg.appendChild(el('rect', { x:0,y:0,width:W,height:H, fill:C.bg, rx:0 }));
+
+  // ── Build triangle sides ──────────────────────────────────
+  let adj, opp, hyp, theta, label;
+
+  if (func === 'arcsin') {
+    // sin⁻¹(x): x = opp/hyp → hyp=1
+    opp = ratio; hyp = 1;
+    adj = Math.sqrt(Math.max(0, 1 - opp*opp));
+    theta = Math.asin(Math.max(-1, Math.min(1, ratio)));
+    label = `sin⁻¹(${ratio.toFixed(2)})`;
+  } else if (func === 'arccos') {
+    // cos⁻¹(x): x = adj/hyp → hyp=1
+    adj = ratio; hyp = 1;
+    opp = Math.sqrt(Math.max(0, 1 - adj*adj));
+    theta = Math.acos(Math.max(-1, Math.min(1, ratio)));
+    label = `cos⁻¹(${ratio.toFixed(2)})`;
+  } else {
+    // tan⁻¹(x): x = opp/adj → adj=1
+    opp = ratio; adj = 1;
+    hyp = Math.sqrt(1 + ratio*ratio);
+    theta = Math.atan(ratio);
+    label = `tan⁻¹(${ratio.toFixed(2)})`;
+  }
+
+  // ── Vertices (right angle at bottom-right) ──
+  const scale = 130;
+  const cx = 260, cy = 200;
+  // P = angle θ vertex (bottom-left)
+  // Q = right angle (bottom-right)
+  // R = top (right angle at Q)
+
+  const absAdj = Math.abs(adj) * scale;
+  const absOpp = Math.abs(opp) * scale;
+
+  const P = [cx - absAdj/2, cy + absOpp/2];
+  const Q = [cx + absAdj/2, cy + absOpp/2];
+  const R = [cx + absAdj/2, cy - absOpp/2];
+
+  // Triangle fill
+  svg.appendChild(el('polygon', {
+    points: `${P[0]},${P[1]} ${Q[0]},${Q[1]} ${R[0]},${R[1]}`,
+    fill: '#fff0f2', stroke: C.coral, 'stroke-width': '2.5', 'stroke-linejoin':'round'
+  }));
+
+  // Right angle box at Q
+  const bs = 10;
+  svg.appendChild(el('polyline', {
+    points: `${Q[0]-bs},${Q[1]} ${Q[0]-bs},${Q[1]-bs} ${Q[0]},${Q[1]-bs}`,
+    fill:'none', stroke:C.slate, 'stroke-width':'1.8'
+  }));
+
+  // Angle arc at P
+  const arcR = 32;
+  const endAngle = -Math.atan2(R[1]-P[1], R[0]-P[0]);
+  // draw arc from 0 to endAngle
+  const arcPath = describeArc(P[0], P[1], arcR, 0, Math.abs(theta) * 180/Math.PI * (opp >= 0 ? -1 : 1));
+  svg.appendChild(el('path', {
+    d: arcPath, fill:'none', stroke:C.purple, 'stroke-width':'2', opacity:'.8'
+  }));
+
+  // ── Side labels ──────────────────────────────────────────
+  function sideLabel(x, y, text, color, bold) {
+    const t = el('text', {
+      x, y, fill: color || C.navy, 'font-size': bold ? '15' : '13',
+      'font-weight': bold ? '800' : '500', 'text-anchor':'middle',
+      'font-family':'Inter,system-ui,sans-serif'
+    }, text);
+    return t;
+  }
+
+  // Hypotenuse (P to R) midpoint
+  const hMx = (P[0]+R[0])/2 - 18, hMy = (P[1]+R[1])/2;
+  const hypStr = hyp === 1 ? '1' : `√(${r(adj*adj+opp*opp,2)}) = ${r(hyp,3)}`;
+  svg.appendChild(sideLabel(hMx, hMy, `hyp = ${hypStr}`, C.coral, true));
+
+  // adj (bottom, P to Q)
+  const adjStr = adj === 1 ? '1' : r(Math.abs(adj), 3).toString();
+  svg.appendChild(sideLabel((P[0]+Q[0])/2, Q[1]+20, `adj = ${adjStr}`, C.blue, true));
+
+  // opp (right, Q to R)
+  const oppStr = r(Math.abs(opp), 3).toString();
+  svg.appendChild(sideLabel(Q[0]+28, (Q[1]+R[1])/2, `opp = ${oppStr}`, C.green, true));
+
+  // θ label
+  svg.appendChild(sideLabel(P[0]+52, P[1]-8, `θ = ${label}`, C.purple, false));
+  svg.appendChild(sideLabel(P[0]+52, P[1]+10, `= ${(theta * 180/Math.PI).toFixed(2)}°`, C.purple, false));
+
+  // ── Header ──
+  svg.appendChild(sideLabel(W/2, 38, 'Reference Right Triangle', C.navy, true));
+  svg.appendChild(el('text', {
+    x: W/2, y:62, fill:C.slate, 'font-size':'12', 'text-anchor':'middle',
+    'font-family':'Inter,system-ui,sans-serif'
+  }, `For: ${label}`));
+
+  // ── Divider + trig table ──
+  svg.appendChild(el('line', { x1:30, y1:H-85, x2:W-30, y2:H-85, stroke:C.coral, 'stroke-width':'1', opacity:'.35'}));
+  svg.appendChild(el('text', {
+    x:W/2, y:H-68, fill:C.slate, 'font-size':'11.5', 'font-weight':'700',
+    'text-anchor':'middle', 'font-family':'Inter,system-ui,sans-serif',
+    'letter-spacing':'1'
+  }, 'NOW EVALUATE OUTSIDE TRIG FUNCTIONS ↓'));
+
+  // Six trig values
+  const sinV = opp/hyp, cosV = adj/hyp;
+  const tanV = adj !== 0 ? opp/adj : NaN;
+  const vals = [
+    ['sin', opp, hyp], ['cos', adj, hyp],
+    ['tan', opp, adj],['csc', hyp, opp],
+    ['sec', hyp, adj], ['cot', adj, opp]
+  ];
+  const gridX = [60, 200, 340, 60, 200, 340];
+  const gridY = [H-46, H-46, H-46, H-22, H-22, H-22];
+  const gridC = [C.blue, C.green, C.coral, C.blue, C.green, C.coral];
+
+  vals.forEach(([name, num, den], i) => {
+    let v = den !== 0 ? r(num/den,4) : '∞';
+    svg.appendChild(el('text', {
+      x: gridX[i], y: gridY[i], fill: gridC[i],
+      'font-size':'12', 'font-weight':'700', 'text-anchor':'middle',
+      'font-family':'Inter,system-ui,sans-serif'
+    }, `${name}θ = ${v}`));
+  });
+
+  // Result grid
+  updateM1Grid(theta, opp, adj, hyp);
+}
+
+function describeArc(cx, cy, r, startAngle, endAngle) {
+  const s = polarToCartesian(cx, cy, r, startAngle);
+  const e = polarToCartesian(cx, cy, r, endAngle);
+  const la = Math.abs(endAngle - startAngle) > 180 ? 1 : 0;
+  const sw = endAngle > startAngle ? 1 : 0;
+  return `M ${s.x} ${s.y} A ${r} ${r} 0 ${la} ${sw} ${e.x} ${e.y}`;
+}
+function polarToCartesian(cx, cy, r, angle) {
+  const rad = (angle - 90) * Math.PI / 180;
+  return { x: cx + r*Math.cos(rad), y: cy + r*Math.sin(rad) };
+}
+
+function updateM1Grid(theta, opp, adj, hyp) {
+  const grid = document.getElementById('m1-grid');
+  const thetaDeg = (theta * 180 / Math.PI).toFixed(3);
+  const items = [
+    { label: 'θ (radians)', val: theta.toFixed(4), sub: `${thetaDeg}°` },
+    { label: 'sin θ', val: (opp/hyp).toFixed(4), sub: `opp/hyp` },
+    { label: 'cos θ', val: (adj/hyp).toFixed(4), sub: `adj/hyp` },
+    { label: 'tan θ', val: adj !== 0 ? (opp/adj).toFixed(4) : '∞', sub: `opp/adj` },
+    { label: 'csc θ', val: opp !== 0 ? (hyp/opp).toFixed(4) : '∞', sub: `hyp/opp` },
+    { label: 'sec θ', val: adj !== 0 ? (hyp/adj).toFixed(4) : '∞', sub: `hyp/adj` },
+  ];
+  grid.innerHTML = items.map(it =>
+    `<div class="result-item"><div class="label">${it.label}</div><div class="val">${it.val}</div><div class="sub">${it.sub}</div></div>`
+  ).join('');
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// MODE 2 — Domain & Graph
+// ─────────────────────────────────────────────────────────────────────────
+function updateM2Label() {
+  const v = +document.getElementById('m2-x').value / 100;
+  document.getElementById('m2-x-val').textContent = v.toFixed(2);
+}
+
+function drawMode2() {
+  const func = document.getElementById('m2-func').value;
+  const xRaw = +document.getElementById('m2-x').value / 100;
+
+  // Highlight active row
+  ['arcsin','arccos','arctan'].forEach(f => {
+    document.getElementById('m2-row-'+f).classList.toggle('active-row', f===func);
+  });
+
+  const svg = document.getElementById('m2-svg');
+  svg.innerHTML = '';
+  const W = 440, H = 440;
+  const ns = 'http://www.w3.org/2000/svg';
+  const cx = W/2, cy = H/2, radius = 160;
+  const C = { coral:'#fb7185', blue:'#3b82f6', gold:'#f59e0b', purple:'#a855f7',
+               navy:'#1e293b', slate:'#94a3b8', green:'#10b981', bg:'#fff8f7',
+               rose:'#9f1239' };
+
+  function el(tag, attrs, text) {
+    const e = document.createElementNS(ns, tag);
+    for (let [k,v] of Object.entries(attrs)) e.setAttribute(k,v);
+    if (text !== undefined) e.textContent = text;
+    return e;
+  }
+
+  svg.appendChild(el('rect', {x:0,y:0,width:W,height:H,fill:C.bg}));
+
+  // ── Restricted arc highlight ──────────────────────────────
+  let startDeg, endDeg, bandColor;
+  if (func === 'arcsin') {
+    // Range [-π/2, π/2]: angles 270°→90° going through 0° (right half)
+    startDeg = -90; endDeg = 90; bandColor = '#ffe4e6';
+  } else if (func === 'arccos') {
+    startDeg = 0; endDeg = 180; bandColor = '#ffe4e6';
+  } else {
+    startDeg = -89.5; endDeg = 89.5; bandColor = '#ffe4e6';
+  }
+
+  // Pie sector for restricted range
+  const sRad = deg2rad(startDeg); const eRad = deg2rad(endDeg);
+  const x1 = cx + radius * Math.cos(-sRad); const y1 = cy + radius * Math.sin(-sRad);
+  const x2 = cx + radius * Math.cos(-eRad); const y2 = cy + radius * Math.sin(-eRad);
+  const la = Math.abs(endDeg - startDeg) > 180 ? 1 : 0;
+  svg.appendChild(el('path', {
+    d:`M ${cx} ${cy} L ${x1} ${y1} A ${radius} ${radius} 0 ${la} 0 ${x2} ${y2} Z`,
+    fill: bandColor, opacity:'0.8'
+  }));
+
+  // ── Circle ──
+  svg.appendChild(el('circle', {cx, cy, r:radius, fill:'none', stroke:'#e2e8f0', 'stroke-width':'2'}));
+
+  // ── Axes ──
+  svg.appendChild(el('line',{x1:cx-radius-20,y1:cy,x2:cx+radius+20,y2:cy,stroke:C.slate,'stroke-width':'1.2'}));
+  svg.appendChild(el('line',{x1:cx,y1:cy-radius-20,x2:cx,y2:cy+radius+20,stroke:C.slate,'stroke-width':'1.2'}));
+
+  // Axis labels
+  ['x','−x','y','−y'].forEach(([txt,dx,dy]) => {}, 0);
+  svg.appendChild(el('text',{x:cx+radius+26,y:cy+5,fill:C.slate,'font-size':'13','font-family':'Inter,sans-serif'},'+x'));
+  svg.appendChild(el('text',{x:cx-radius-28,y:cy+5,fill:C.slate,'font-size':'13','font-family':'Inter,sans-serif','text-anchor':'end'},'-x'));
+  svg.appendChild(el('text',{x:cx+5,y:cy-radius-10,fill:C.slate,'font-size':'13','font-family':'Inter,sans-serif'},'+y'));
+  svg.appendChild(el('text',{x:cx+5,y:cy+radius+22,fill:C.slate,'font-size':'13','font-family':'Inter,sans-serif'},'-y'));
+
+  // ── Input point & angle ──────────────────────────────────
+  let x = xRaw, theta, valid = true;
+
+  if (func === 'arcsin') {
+    if (x < -1 || x > 1) { valid = false; x = Math.max(-1, Math.min(1, x)); }
+    theta = Math.asin(x);
+  } else if (func === 'arccos') {
+    if (x < -1 || x > 1) { valid = false; x = Math.max(-1, Math.min(1, x)); }
+    theta = Math.acos(x);
+  } else {
+    theta = Math.atan(x);
+  }
+
+  // Point on circle
+  // Standard math angle: cos(θ), sin(θ) → SVG: cx+r*cos, cy-r*sin
+  const px = cx + radius * Math.cos(theta);
+  const py = cy - radius * Math.sin(theta);
+
+  // Spoke
+  svg.appendChild(el('line',{x1:cx,y1:cy,x2:px,y2:py,stroke:C.coral,'stroke-width':'2.5'}));
+
+  // Point
+  svg.appendChild(el('circle',{cx:px,cy:py,r:'7',fill:C.rose,opacity:'.9'}));
+
+  // Coord label
+  const cosV = Math.cos(theta).toFixed(3);
+  const sinV = Math.sin(theta).toFixed(3);
+  const lx = px + (px > cx ? 10 : -10), ly = py + (py > cy ? 14 : -8);
+  svg.appendChild(el('text',{
+    x:lx, y:ly, fill:C.rose, 'font-size':'12', 'font-weight':'700',
+    'font-family':'Inter,sans-serif',
+    'text-anchor': px > cx ? 'start' : 'end'
+  }, `(${cosV}, ${sinV})`));
+
+  // Angle arc
+  const arcSeg = describeArcUC(cx, cy, 30, 0, theta * 180/Math.PI);
+  svg.appendChild(el('path',{d:arcSeg,fill:'none',stroke:C.purple,'stroke-width':'2.5'}));
+  // θ label
+  const midAngle = theta / 2;
+  const tlx = cx + 46 * Math.cos(midAngle);
+  const tly = cy - 46 * Math.sin(midAngle);
+  svg.appendChild(el('text',{
+    x:tlx, y:tly, fill:C.purple, 'font-size':'13', 'font-weight':'700',
+    'font-family':'Inter,sans-serif', 'text-anchor':'middle'
+  }, 'θ'));
+
+  // ── Restriction label ──
+  let rangeText;
+  if (func === 'arcsin') rangeText = 'Restricted to [−π/2, π/2]';
+  else if (func === 'arccos') rangeText = 'Restricted to [0, π]';
+  else rangeText = 'Restricted to (−π/2, π/2)';
+
+  svg.appendChild(el('text',{
+    x:W/2, y:H-18, fill:C.rose, 'font-size':'11.5', 'font-weight':'700',
+    'font-family':'Inter,sans-serif', 'text-anchor':'middle'
+  }, rangeText));
+
+  // Header
+  svg.appendChild(el('text',{
+    x:W/2, y:26, fill:C.navy, 'font-size':'14', 'font-weight':'800',
+    'font-family':'Inter,sans-serif', 'text-anchor':'middle'
+  }, 'Unit Circle — Restricted Output Range'));
+
+  // ── Output info ──────────────────────────────────────────
+  const thetaDeg = (theta * 180/Math.PI).toFixed(3);
+  let warn = '';
+  if (!valid) warn = `<br><span style="color:var(--rose-dk);font-weight:700;">⚠ Input clamped — original value outside domain</span>`;
+
+  document.getElementById('m2-output').innerHTML = `
+    <div style="margin-bottom:8px;"><span style="color:var(--slate);">x input:</span> <strong>${xRaw.toFixed(2)}</strong></div>
+    <div style="margin-bottom:8px;"><span style="color:var(--slate);">θ output (rad):</span> <strong style="color:var(--rose-dk);">${theta.toFixed(4)}</strong></div>
+    <div style="margin-bottom:8px;"><span style="color:var(--slate);">θ output (deg):</span> <strong style="color:var(--purple);">${thetaDeg}°</strong></div>
+    <div style="margin-bottom:8px;"><span style="color:var(--slate);">cos θ:</span> <strong>${cosV}</strong></div>
+    <div><span style="color:var(--slate);">sin θ:</span> <strong>${sinV}</strong></div>
+    ${warn}
+  `;
+}
+
+function describeArcUC(cx, cy, r, startAngleDeg, endAngleDeg) {
+  // SVG arc: standard angle, counterclockwise = SVG clockwise correction
+  function pt(deg) {
+    const rad = deg * Math.PI / 180;
+    return { x: cx + r * Math.cos(rad), y: cy - r * Math.sin(rad) };
+  }
+  const s = pt(startAngleDeg);
+  const e = pt(endAngleDeg);
+  const diff = endAngleDeg - startAngleDeg;
+  const la = Math.abs(diff) > 180 ? 1 : 0;
+  const sw = diff > 0 ? 0 : 1;
+  return `M ${s.x} ${s.y} A ${r} ${r} 0 ${la} ${sw} ${e.x} ${e.y}`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// MODE 3 — sin(α+β) Proof
+// ─────────────────────────────────────────────────────────────────────────
+function updateM3Labels() {
+  const a = +document.getElementById('m3-alpha').value;
+  const b = +document.getElementById('m3-beta').value;
+  document.getElementById('m3-a-val').textContent = a + '°';
+  document.getElementById('m3-b-val').textContent = b + '°';
+}
+
+function clampBeta() {
+  const a = +document.getElementById('m3-alpha').value;
+  const bEl = document.getElementById('m3-beta');
+  const maxB = Math.max(5, 85 - a);
+  bEl.max = maxB;
+  if (+bEl.value > maxB) bEl.value = maxB;
+}
+
+function drawMode3() {
+  const alphaDeg = +document.getElementById('m3-alpha').value;
+  const betaDeg  = +document.getElementById('m3-beta').value;
+  const showSteps = document.getElementById('m3-steps').checked;
+
+  const alpha = deg2rad(alphaDeg);
+  const beta  = deg2rad(betaDeg);
+  const total = alpha + beta;
+
+  const svg = document.getElementById('m3-svg');
+  svg.innerHTML = '';
+  const W = 520, H = 480;
+  const ns = 'http://www.w3.org/2000/svg';
+
+  const C = {
+    coral:  '#fb7185',
+    blue:   '#3b82f6',
+    gold:   '#f59e0b',
+    purple: '#a855f7',
+    navy:   '#1e293b',
+    slate:  '#64748b',
+    green:  '#10b981',
+    bg:     '#fff8f7',
+    rose:   '#9f1239'
+  };
+
+  function el(tag, attrs, text) {
+    const e = document.createElementNS(ns, tag);
+    for (let [k,v] of Object.entries(attrs)) e.setAttribute(k,v);
+    if (text !== undefined) e.textContent = text;
+    return e;
+  }
+
+  svg.appendChild(el('rect',{x:0,y:0,width:W,height:H,fill:C.bg}));
+
+  // ── Geometry ──────────────────────────────────────────────
+  // PR length = 1 (unit segment). Place P at bottom-left.
+  // α+β = total angle from horizontal
+  // P is the angle vertex:
+  //   - PM is along horizontal (bottom of rectangle)
+  //   - PR is at angle (α+β) from PM (length 1)
+  //
+  // Q is the foot of perpendicular from R down to PH line:
+  //   PQ = cos β · (PH direction at β from PM)
+  //   Actually use the classic construction:
+  //     Let PQ = cos β, along angle β from PM
+  //     QR is perpendicular to PQ, length sin β
+
+  const scale = 170;
+  const Px = 100, Py = 400;
+
+  // Direction vectors
+  const cA = Math.cos(alpha), sA = Math.sin(alpha);
+  const cB = Math.cos(beta),  sB = Math.sin(beta);
+  const cAB = Math.cos(total), sAB = Math.sin(total);
+
+  // Key points (all in SVG coords — y is flipped)
+  // P = base vertex
+  // R = end of unit segment at angle (α+β): PR = 1
+  const Rx = Px + scale * cAB;
+  const Ry = Py - scale * sAB;
+
+  // Q = foot of perpendicular from R onto PH line at angle α
+  // PQ length = cos β (because PQ is projection of PR onto PH-at-α)
+  // In the rectangle construction: Q is along direction α from P, at distance cos β
+  const Qx = Px + scale * cB * cA;
+  const Qy = Py - scale * cB * sA;
+
+  // H = foot of perpendicular from R onto horizontal baseline PM
+  // H = (Rx, Py) — directly below R
+  const Hx = Rx, Hy = Py;
+
+  // S = foot of perpendicular from Q onto horizontal baseline
+  const Sx = Qx, Sy = Py;
+
+  // O = origin (P)
+  // N = corner at (Rx, Py)
+  // M = (Px + scale * cAB_at_base, Py) — not needed separately
+
+  // ── Background strips ──────────────────────────────────
+  // sin α cos β strip (blue): between Sx and Hx on baseline → to R (part 1)
+  // cos α sin β strip (coral): between Px,Py and Sx,Py (part 2)
+  // We'll color the left side segments
+
+  // ── Rectangle / reference lines ───────────────────────
+  // Draw the outer rectangle PNRM where:
+  // P bottom-left, N = bottom-right (Rx, Py), R top-right, M top-left (Px, Ry)
+  const Mx = Px, My = Ry; // top-left above P
+
+  // Outer dashed rectangle
+  svg.appendChild(el('rect',{
+    x: Px, y: Ry, width: Rx-Px, height: Py-Ry,
+    fill:'none', stroke:'#e2e8f0', 'stroke-width':'1.5', 'stroke-dasharray':'5,4', rx:'2'
+  }));
+
+  // ── Vertical left side = sin(α+β) total ──────────────
+  // Left side from P(Px,Py) to M(Mx,My), total height = sin(α+β)*scale
+  // Divided by horizontal through Q:
+  //   Bottom segment (Sy to Py along left) = cos α sin β (coral) — height = sA*sB... wait
+  //   Actually the split is:
+  //     sin α cos β = vertical from Q projected height: sA * cB * scale
+  //     cos α sin β = vertical from P to Q: not quite — use standard proof layout
+
+  // Using the box proof exactly:
+  // Draw PR at angle α+β, length 1*scale = scale px
+  // From R, drop perpendicular to the line at angle α (= QR, length sin β * scale)
+  // Q is foot of that perpendicular on line-at-α
+  // From Q, drop perpendicular to horizontal (= foot is S = (Qx, Py))
+  // From R, drop perpendicular to horizontal (= foot is H = (Rx, Py))
+
+  // Segment breakdown (heights on vertical axis):
+  //   OR = R to horizontal = sin(α+β)*scale = Py - Ry
+  //   But on the TOP-LEFT side: from P, the left edge goes up to M at height Py-My = sAB*scale... wait
+  //   Correct: |PR|=scale, PR makes angle α+β, so vertical projection = scale*sin(α+β)
+  //   The split:
+  //     sin α cos β : from S=(Sx,Sy=Py) going up to level of Q-horizontal from R...
+  //
+  // Let's use segment coloring on the TOP-LEFT vertical = (Px, Py) to (Px, Py - sAB*scale):
+  //   Bottom part height (coral) = cos α sin β * scale
+  //   Top part height (blue)     = sin α cos β * scale
+  //
+  //   cos α sin β: y from Py down to Py - cA*sB*scale → bottom segment
+  //   sin α cos β: y from Py-cA*sB*scale to Py-sAB*scale
+
+  const totalH = scale * sAB;
+  const blueH  = scale * sA * cB;  // sin α cos β
+  const coralH = scale * cA * sB;  // cos α sin β
+
+  const leftX = Px;
+  const segBlueY1 = Py - totalH;
+  const segBlueY2 = Py - coralH - blueH; // same as above
+  const segCoralY1 = Py - coralH;
+  const segCoralY2 = Py;
+
+  // Coral segment (cos α sin β)
+  svg.appendChild(el('line',{
+    x1:leftX-6, y1:segCoralY2, x2:leftX-6, y2:segCoralY1,
+    stroke:C.coral, 'stroke-width':'7', 'stroke-linecap':'round'
+  }));
+  // Blue segment (sin α cos β)
+  svg.appendChild(el('line',{
+    x1:leftX-6, y1:segCoralY1, x2:leftX-6, y2:segBlueY1,
+    stroke:C.blue, 'stroke-width':'7', 'stroke-linecap':'round'
+  }));
+  // Purple bracket total
+  svg.appendChild(el('line',{
+    x1:leftX-18, y1:Py, x2:leftX-18, y2:Py-totalH,
+    stroke:C.purple, 'stroke-width':'3', 'stroke-linecap':'round', opacity:'.8'
+  }));
+
+  // ── Bottom baseline sin(α+β) from H to P on bottom ──
+  // Total horizontal projection = cos(α+β)*scale — just draw it
+  const bottomTotalW = scale * cAB;
+  svg.appendChild(el('line',{
+    x1:Px, y1:Py+8, x2:Px+bottomTotalW, y2:Py+8,
+    stroke:C.gold, 'stroke-width':'4', 'stroke-linecap':'round', opacity:'.9'
+  }));
+
+  // ── Main lines ────────────────────────────────────────
+  // PQ (along angle α, length cos β * scale)
+  svg.appendChild(el('line',{x1:Px,y1:Py,x2:Qx,y2:Qy,stroke:C.navy,'stroke-width':'2.5','stroke-linecap':'round'}));
+  // QR (perpendicular to PQ, length sin β * scale)
+  svg.appendChild(el('line',{x1:Qx,y1:Qy,x2:Rx,y2:Ry,stroke:C.navy,'stroke-width':'2.5','stroke-linecap':'round'}));
+  // PR (unit segment, the main one)
+  svg.appendChild(el('line',{x1:Px,y1:Py,x2:Rx,y2:Ry,stroke:C.rose,'stroke-width':'3','stroke-linecap':'round'}));
+
+  // Vertical from R
+  svg.appendChild(el('line',{x1:Rx,y1:Py,x2:Rx,y2:Ry,stroke:'#e2e8f0','stroke-width':'1.5','stroke-dasharray':'4,3'}));
+  // Vertical from Q
+  svg.appendChild(el('line',{x1:Qx,y1:Py,x2:Qx,y2:Qy,stroke:'#e2e8f0','stroke-width':'1.5','stroke-dasharray':'4,3'}));
+  // Horizontal from Q to R level
+  svg.appendChild(el('line',{x1:Px,y1:Qy,x2:Rx,y2:Qy,stroke:'#e2e8f0','stroke-width':'1.2','stroke-dasharray':'4,3'}));
+
+  // ── Angle arcs ────────────────────────────────────────
+  // α arc at P (between horizontal and PQ)
+  svg.appendChild(el('path',{
+    d: describeArcUC(Px, Py, 34, 0, alphaDeg),
+    fill:'none', stroke:C.blue, 'stroke-width':'2.2', opacity:'.9'
+  }));
+  // α label
+  svg.appendChild(el('text',{
+    x: Px+40, y: Py-10, fill:C.blue, 'font-size':'14', 'font-weight':'800',
+    'font-family':'Inter,sans-serif'
+  }, 'α'));
+
+  // β arc at P (between PQ and PR) — from α to α+β
+  svg.appendChild(el('path',{
+    d: describeArcUC(Px, Py, 52, alphaDeg, alphaDeg+betaDeg),
+    fill:'none', stroke:C.coral, 'stroke-width':'2.2', opacity:'.9'
+  }));
+  // β label
+  const midBeta = deg2rad(alphaDeg + betaDeg/2);
+  svg.appendChild(el('text',{
+    x: Px + 62*Math.cos(midBeta), y: Py - 62*Math.sin(midBeta),
+    fill:C.coral, 'font-size':'14', 'font-weight':'800',
+    'font-family':'Inter,sans-serif', 'text-anchor':'middle'
+  }, 'β'));
+
+  // ── Points ────────────────────────────────────────────
+  [[Px,Py,'P'],[Qx,Qy,'Q'],[Rx,Ry,'R']].forEach(([x,y,lbl]) => {
+    svg.appendChild(el('circle',{cx:x,cy:y,r:'5',fill:C.rose,opacity:'.95'}));
+    const off = { P:[-12,10], Q:[8,-8], R:[10,0] }[lbl] || [8,0];
+    svg.appendChild(el('text',{
+      x:x+off[0], y:y+off[1], fill:C.rose, 'font-size':'13','font-weight':'800',
+      'font-family':'Inter,sans-serif'
+    }, lbl));
+  });
+
+  // ── Step labels ───────────────────────────────────────
+  if (showSteps) {
+    // PQ label
+    const pqMx = (Px+Qx)/2, pqMy = (Py+Qy)/2;
+    const pqAngle = Math.atan2(Qy-Py, Qx-Px);
+    const pqOff = 14;
+    svg.appendChild(segLabel(el, pqMx + pqOff*Math.sin(pqAngle), pqMy - pqOff*Math.cos(pqAngle),
+      `cos β = ${r(cB,3)}`, C.navy, '11'));
+
+    // QR label
+    const qrMx = (Qx+Rx)/2, qrMy = (Qy+Ry)/2;
+    const qrAngle = Math.atan2(Ry-Qy, Rx-Qx);
+    svg.appendChild(segLabel(el, qrMx + 14*Math.sin(qrAngle), qrMy - 14*Math.cos(qrAngle),
+      `sin β = ${r(sB,3)}`, C.navy, '11'));
+
+    // PR label
+    const prMx = (Px+Rx)/2, prMy = (Py+Ry)/2;
+    const prAngle = Math.atan2(Ry-Py, Rx-Px);
+    svg.appendChild(segLabel(el, prMx - 14*Math.sin(prAngle), prMy + 14*Math.cos(prAngle),
+      'PR = 1', C.rose, '11'));
+
+    // Segment labels on left side
+    const lsX = leftX - 46;
+    svg.appendChild(segLabel(el, lsX, (segCoralY1+segCoralY2)/2,
+      `cosα sinβ`, C.coral, '10.5'));
+    svg.appendChild(segLabel(el, lsX, (segBlueY1+segCoralY1)/2,
+      `sinα cosβ`, C.blue, '10.5'));
+    svg.appendChild(segLabel(el, leftX - 32, Py - totalH/2,
+      `sin(α+β)`, C.purple, '10'));
+
+    // Bottom label
+    svg.appendChild(segLabel(el, Px + bottomTotalW/2, Py + 24,
+      `cos(α+β) = ${r(cAB,3)}`, C.gold, '10.5'));
+  }
+
+  // ── Always-on segment value labels ───────────────────
+  // Small badges on segments
+  const lsX2 = leftX - 28;
+  if (!showSteps) {
+    svg.appendChild(miniLabel(el, lsX2, (segCoralY1+segCoralY2)/2, r(cA*sB,3).toString(), C.coral));
+    svg.appendChild(miniLabel(el, lsX2, (segBlueY1+segCoralY1)/2, r(sA*cB,3).toString(), C.blue));
+    svg.appendChild(miniLabel(el, Px + bottomTotalW/2, Py + 22, r(cAB,3).toString(), C.gold));
+  }
+
+  // ── Formula values (right panel) ─────────────────────
+  document.getElementById('f-sinacosb').textContent = r(sA*cB,4).toString();
+  document.getElementById('f-cosasinb').textContent = r(cA*sB,4).toString();
+  document.getElementById('f-total').textContent    = r(sA*cB + cA*sB, 4).toString();
+  document.getElementById('f-cos').textContent      = r(cA*cB - sA*sB, 4).toString();
+
+  // ── Title ────────────────────────────────────────────
+  svg.appendChild(el('text',{
+    x:W/2, y:30, fill:C.navy, 'font-size':'14.5', 'font-weight':'800',
+    'font-family':'Inter,sans-serif', 'text-anchor':'middle'
+  }, `sin(α+β) Geometric Proof   α=${alphaDeg}°, β=${betaDeg}°`));
+
+  svg.appendChild(el('text',{
+    x:W/2, y:50, fill:C.slate, 'font-size':'11.5',
+    'font-family':'Inter,sans-serif', 'text-anchor':'middle'
+  }, `sin(${alphaDeg}°+${betaDeg}°) = sin${alphaDeg}°cos${betaDeg}° + cos${alphaDeg}°sin${betaDeg}° = ${r(sA*cB+cA*sB,4)}`));
+}
+
+function segLabel(el, x, y, text, color, fontSize) {
+  return el('text',{
+    x, y, fill:color, 'font-size':fontSize||'11', 'font-weight':'700',
+    'font-family':'Inter,sans-serif', 'text-anchor':'middle'
+  }, text);
+}
+function miniLabel(el, x, y, text, color) {
+  return el('text',{
+    x, y, fill:color, 'font-size':'11', 'font-weight':'700',
+    'font-family':'Inter,sans-serif', 'text-anchor':'middle', opacity:'.85'
+  }, text);
+}
+
+function computeM3() {
+  const alpha = deg2rad(+document.getElementById('m3-alpha').value);
+  const beta  = deg2rad(+document.getElementById('m3-beta').value);
+  const sA = Math.sin(alpha), cA = Math.cos(alpha);
+  const sB = Math.sin(beta),  cB = Math.cos(beta);
+
+  const sinDirect  = Math.sin(alpha+beta);
+  const sinFormula = sA*cB + cA*sB;
+  const cosDirect  = Math.cos(alpha+beta);
+  const cosFormula = cA*cB - sA*sB;
+
+  document.getElementById('v-direct').textContent  = sinDirect.toFixed(6);
+  document.getElementById('v-formula').textContent = sinFormula.toFixed(6);
+  document.getElementById('v-cosd').textContent    = cosDirect.toFixed(6);
+  document.getElementById('v-cosf').textContent    = cosFormula.toFixed(6);
+
+  document.getElementById('m3-verify').classList.add('shown');
+}
+
+// ── Init ─────────────────────────────────────────────────────────────────
+updateRatioLabel();
+drawTriangle();
+updateM2Label();
+updateM3Labels();
+clampBeta();
+</script>
+</body>
+</html>

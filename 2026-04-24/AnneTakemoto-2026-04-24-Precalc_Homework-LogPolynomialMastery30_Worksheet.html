@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Anne Takemoto — Pre-Calculus Homework: Log → Polynomials Mastery (30 Problems) — 2026-04-24</title>
+<script>
+window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    startup: { ready: () => { MathJax.startup.defaultReady(); } }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+@page { size: letter; margin: 0.5in; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #fafafa; }
+body { font-family: 'Source Serif Pro', 'Georgia', 'Times New Roman', serif; font-size: 10.5pt; line-height: 1.55; color: #000; }
+.page { max-width: 720px; margin: 0 auto; padding: 70px 50px 40px 50px; background: #fff; }
+.page-break { page-break-before: always; break-before: page; }
+@media print {
+    html, body { background: #fff; }
+    .page { max-width: none; padding: 0.7in 0.6in 0.5in 0.6in; margin: 0; box-shadow: none; }
+    .problem, .answer-block, .example, .word-problem { page-break-inside: avoid; break-inside: avoid; }
+    .part-header, .directions, .problem-header, h1, h2, h3 { page-break-after: avoid; break-after: avoid; }
+    .page-break { page-break-before: always; break-before: page; }
+    * { background: transparent !important; }
+    .example { background: transparent !important; }
+}
+
+:root {
+    --color-primary: #c2185b; --color-primary-dark: #880e4f; --color-accent: #7b1fa2;
+    --color-header-border: #c2185b; --color-final-answer: #2e7d32; --color-warning: #d84315;
+    --color-tag-border: #c2185b; --color-tag-text: #c2185b; --color-muted: #555; --color-rule: #ccc;
+}
+
+h1, h2, h3, .part-header { font-family: 'Libre Baskerville', 'Georgia', serif; }
+.header { text-align: center; padding-bottom: 10px; margin-bottom: 16px; border-bottom: 2px solid var(--color-header-border); }
+.school-name { font-size: 9pt; letter-spacing: 4px; color: var(--color-primary); font-weight: bold; }
+.subject-tag, .key-tag { display: inline-block; padding: 2px 10px; font-size: 8pt; letter-spacing: 2px; margin: 5px 3px 7px 3px; font-weight: bold; }
+.subject-tag { border: 1.5px solid var(--color-primary); color: var(--color-primary); }
+.key-tag { border: 1.5px solid var(--color-warning); color: var(--color-warning); }
+h1 { font-size: 15pt; margin: 6px 0 8px 0; font-weight: bold; line-height: 1.3; }
+.info { display: flex; justify-content: space-between; font-size: 10pt; margin-top: 6px; }
+.standard { font-size: 8pt; font-style: italic; margin-top: 4px; color: var(--color-muted); }
+
+.part-header { font-size: 13pt; font-weight: bold; color: var(--color-primary); margin: 22px 0 6px 0; padding-bottom: 3px; border-bottom: 1.5px solid var(--color-primary); }
+.directions { font-size: 10pt; font-style: italic; color: #333; margin-bottom: 12px; line-height: 1.5; }
+.directions strong { color: #000; font-style: normal; }
+
+.example { border: 2px solid var(--color-final-answer); padding: 10px 14px; margin: 12px 0; }
+.example-title { font-weight: bold; color: var(--color-final-answer); margin-bottom: 5px; font-size: 10.5pt; }
+.example-problem { font-size: 10pt; padding: 4px 0; margin-bottom: 6px; }
+.example-solution { border-left: 3px solid var(--color-final-answer); padding-left: 10px; margin-top: 6px; font-size: 9.5pt; line-height: 1.55; }
+.example-solution p { margin: 4px 0; }
+.example-answer { display: inline-block; border: 1.5px solid var(--color-final-answer); color: var(--color-final-answer); font-weight: bold; padding: 2px 8px; border-radius: 3px; margin-top: 4px; font-size: 10pt; }
+
+.problem { margin: 12px 0; font-size: 10.5pt; line-height: 1.6; padding-left: 8px; border-left: 3px solid var(--color-primary); }
+.q-num { display: inline-block; min-width: 28px; font-weight: bold; color: var(--color-primary); }
+.work-space { min-height: 90px; margin-left: 28px; margin-top: 4px; }
+.work-space.tall { min-height: 140px; }
+.work-space.short { min-height: 50px; }
+.compact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.compact-grid .problem { margin: 6px 0; font-size: 10pt; padding: 6px 8px; border-left: 3px solid var(--color-primary); }
+.compact-grid .work-space { min-height: 60px; }
+
+.footer { text-align: center; font-size: 8pt; color: #666; border-top: 1px solid var(--color-rule); margin-top: 20px; padding-top: 6px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="school-name">NEWTON SCHOOL</div>
+    <span class="subject-tag">PRE-CALCULUS</span>
+    <span class="key-tag">HOMEWORK · 30 PROBLEMS</span>
+    <h1>Mastery Set: Log Properties &rarr; Polynomial Theorems</h1>
+    <div class="info">
+      <span><strong>Student:</strong> Anne Takemoto</span>
+      <span><strong>Date Assigned:</strong> 2026-04-24</span>
+    </div>
+    <div class="standard"><strong>Format:</strong> Each section opens with 2 worked examples (study these first), followed by practice problems. Show all work.</div>
+  </div>
+
+  <!-- ============================================================
+       PART 1 — LOG PROPERTIES (Foundation, 12 problems)
+       ============================================================ -->
+  <div class="part-header">Part 1 &mdash; Logarithm Properties (12 problems)</div>
+  <div class="directions"><strong>Goal:</strong> Master \(\log_b(b)=1\), \(\log_b(1)=0\), product rule, quotient rule, power rule, and change of base.</div>
+
+  <div class="example">
+    <div class="example-title">Worked Example 1.A &mdash; Evaluating a Logarithm</div>
+    <div class="example-problem">Evaluate \(\log_4(64)\).</div>
+    <div class="example-solution">
+      <p><strong>Strategy:</strong> Ask &mdash; "4 to what power gives 64?"</p>
+      <p>\(4^3 = 64\), so \(\log_4(64) = 3\).</p>
+      <p>Equivalently, set \(\log_4(64) = x\) \(\Rightarrow 4^x = 64 = 4^3 \Rightarrow x = 3\).</p>
+      <span class="example-answer">\(\log_4(64) = 3\)</span>
+    </div>
+  </div>
+
+  <div class="example">
+    <div class="example-title">Worked Example 1.B &mdash; Expanding with Log Laws</div>
+    <div class="example-problem">Expand \(\log\!\left(\dfrac{x\,y^{2}}{\sqrt{z}}\right)\) using log properties.</div>
+    <div class="example-solution">
+      <p><strong>Step 1.</strong> Quotient rule: \(\log(x\,y^2) - \log(\sqrt{z})\).</p>
+      <p><strong>Step 2.</strong> Product rule on numerator: \(\log(x) + \log(y^2) - \log(z^{1/2})\).</p>
+      <p><strong>Step 3.</strong> Power rule on each: \(\log(x) + 2\log(y) - \tfrac{1}{2}\log(z)\).</p>
+      <span class="example-answer">\(\log(x) + 2\log(y) - \tfrac{1}{2}\log(z)\)</span>
+    </div>
+  </div>
+
+  <div class="directions" style="margin-top:14px;"><strong>Problems 1&ndash;7:</strong> Evaluate each. (No calculator for #1&ndash;5.)</div>
+
+  <div class="compact-grid">
+    <div class="problem"><span class="q-num">1.</span> \(\log_3(81) =\) <div class="work-space short"></div></div>
+    <div class="problem"><span class="q-num">2.</span> \(\log_2\!\left(\tfrac{1}{16}\right) =\) <div class="work-space short"></div></div>
+    <div class="problem"><span class="q-num">3.</span> \(\log_5(125) =\) <div class="work-space short"></div></div>
+    <div class="problem"><span class="q-num">4.</span> \(\ln(e^{7}) =\) <div class="work-space short"></div></div>
+    <div class="problem"><span class="q-num">5.</span> \(\log(10{,}000) =\) <div class="work-space short"></div></div>
+    <div class="problem"><span class="q-num">6.</span> \(\log_4(8) + \log_4(2) =\) <div class="work-space short"></div></div>
+    <div class="problem"><span class="q-num">7.</span> \(\log_3(54) - \log_3(2) =\) <div class="work-space short"></div></div>
+  </div>
+
+  <div class="directions" style="margin-top:10px;"><strong>Problems 8&ndash;10:</strong> Expand fully using log laws.</div>
+
+  <div class="problem"><span class="q-num">8.</span> Expand: \(\log_2(x^{2}\,y^{3})\) <div class="work-space"></div></div>
+  <div class="problem"><span class="q-num">9.</span> Expand: \(\ln\!\left(\sqrt{\dfrac{a}{b}}\right)\) <div class="work-space"></div></div>
+  <div class="problem"><span class="q-num">10.</span> Expand: \(\log_5\!\left(\dfrac{x^{3}\,y}{z^{2}}\right)\) <div class="work-space"></div></div>
+
+  <div class="directions" style="margin-top:10px;"><strong>Problems 11&ndash;12:</strong> Condense into a single logarithm.</div>
+
+  <div class="problem"><span class="q-num">11.</span> Condense: \(4\log(x) + 2\log(y) - 3\log(z)\) <div class="work-space"></div></div>
+  <div class="problem"><span class="q-num">12.</span> Condense: \(\tfrac{1}{2}\ln(a) - 3\ln(b)\) <div class="work-space"></div></div>
+
+  <!-- ============================================================
+       PART 2 — LOG EQUATIONS (4 problems)
+       ============================================================ -->
+  <div class="part-header page-break">Part 2 &mdash; Solving Log Equations (4 problems)</div>
+  <div class="directions"><strong>Always:</strong> state domain first, then solve, then reject extraneous.</div>
+
+  <div class="example">
+    <div class="example-title">Worked Example 2.A &mdash; Single Log</div>
+    <div class="example-problem">Solve \(\log_3(x+1) = 2\).</div>
+    <div class="example-solution">
+      <p><strong>Domain:</strong> \(x + 1 > 0 \Rightarrow x > -1\).</p>
+      <p>Convert to exponential form: \(x + 1 = 3^2 = 9\) \(\Rightarrow x = 8\). \(8 > -1\) &check;.</p>
+      <span class="example-answer">\(x = 8\)</span>
+    </div>
+  </div>
+
+  <div class="example">
+    <div class="example-title">Worked Example 2.B &mdash; Sum of Logs</div>
+    <div class="example-problem">Solve \(\log_2(x) + \log_2(x-2) = 3\).</div>
+    <div class="example-solution">
+      <p><strong>Domain:</strong> \(x > 0\) and \(x > 2 \Rightarrow x > 2\).</p>
+      <p>Combine: \(\log_2\!\bigl(x(x-2)\bigr) = 3 \Rightarrow x(x-2) = 8\).</p>
+      <p>\(x^2 - 2x - 8 = 0 \Rightarrow (x-4)(x+2) = 0 \Rightarrow x = 4\) or \(-2\).</p>
+      <p>Reject \(-2\) (outside domain). Keep \(x = 4\).</p>
+      <span class="example-answer">\(x = 4\)</span>
+    </div>
+  </div>
+
+  <div class="problem"><span class="q-num">13.</span> Solve: \(\log_2(x) = 5\) <div class="work-space"></div></div>
+  <div class="problem"><span class="q-num">14.</span> Solve: \(\log_3(x-2) = 4\) <div class="work-space"></div></div>
+  <div class="problem"><span class="q-num">15.</span> Solve: \(\log_2(x) + \log_2(x+2) = 3\) (state domain) <div class="work-space tall"></div></div>
+  <div class="problem"><span class="q-num">16.</span> Solve: \(\log_5(x+1) - \log_5(x-3) = 1\) (state domain) <div class="work-space tall"></div></div>
+
+  <!-- ============================================================
+       PART 3 — EXPONENTIAL MODELING (4 problems, includes Image #3 + #4 variants)
+       ============================================================ -->
+  <div class="part-header">Part 3 &mdash; Exponential Modeling (4 problems)</div>
+  <div class="directions"><strong>Tools:</strong> \(A = Pe^{rt}\), \(A(t) = A_0 e^{kt}\), and the identity \(a^t = e^{t\ln a}\).</div>
+
+  <div class="example">
+    <div class="example-title">Worked Example 3.A &mdash; Continuous Compound Doubling</div>
+    <div class="example-problem">\(\$1{,}000\) is invested at 5\% compounded continuously. How long until it doubles?</div>
+    <div class="example-solution">
+      <p>\(2000 = 1000\,e^{0.05\,t} \Rightarrow 2 = e^{0.05\,t}\).</p>
+      <p>\(\ln 2 = 0.05\,t \Rightarrow t = \dfrac{\ln 2}{0.05} \approx 13.86\) years.</p>
+      <span class="example-answer">\(t \approx 13.86\) years</span>
+    </div>
+  </div>
+
+  <div class="example">
+    <div class="example-title">Worked Example 3.B &mdash; Solve \(a^{x} = N\)</div>
+    <div class="example-problem">Solve \(2^x = 10\) for \(x\) (4 decimals).</div>
+    <div class="example-solution">
+      <p>Take \(\ln\) on both sides: \(x \ln 2 = \ln 10\).</p>
+      <p>\(x = \dfrac{\ln 10}{\ln 2} = \dfrac{2.30259}{0.69315} \approx 3.3219\).</p>
+      <span class="example-answer">\(x \approx 3.3219\)</span>
+    </div>
+  </div>
+
+  <div class="problem">
+    <span class="q-num">17.</span> Solve for \(x\) (4 decimals): \(5^{x} = 14\). Show change-of-base.
+    <div class="work-space"></div>
+  </div>
+
+  <div class="problem word-problem">
+    <span class="q-num">18.</span> A principal of \(\$3{,}000\) is invested at an annual rate of \(5.5\%\), <strong>compounded continuously</strong>. Using \(A(t) = Pe^{rt}\), determine how many years until the investment grows to \(\$9{,}000\).
+    <div class="work-space tall"></div>
+  </div>
+
+  <div class="problem word-problem">
+    <span class="q-num">19.</span> Convert exponential bases. Rewrite \(f(t) = 800\,(1.045)^{t}\) in the form \(f(t) = 800\,e^{rt}\).
+    <br>(a) Find the exact value of \(r\).
+    <br>(b) Interpret \(r\) as a continuous growth rate (percentage to 2 decimal places).
+    <div class="work-space"></div>
+  </div>
+
+  <div class="problem word-problem">
+    <span class="q-num">20.</span> A sample starts at 100 grams and decays to 10 grams after 50 years following \(A(t) = A_0 e^{kt}\).
+    <br>(a) Find \(k\) (exact, in terms of \(\ln\)).
+    <br>(b) Find the half-life (years).
+    <div class="work-space tall"></div>
+  </div>
+
+  <!-- ============================================================
+       PART 4 — FTA / Complex Roots (3 problems, includes Image #1 + #2 variants)
+       ============================================================ -->
+  <div class="part-header page-break">Part 4 &mdash; Fundamental Theorem of Algebra (3 problems)</div>
+  <div class="directions"><strong>Conjugate Root Theorem:</strong> if real coefficients and \(a + bi\) is a zero, so is \(a - bi\).</div>
+
+  <div class="example">
+    <div class="example-title">Worked Example 4.A &mdash; Find All Zeros Given One Complex Zero</div>
+    <div class="example-problem">Given \(i\) is a zero of \(P(x) = x^{3} - x^{2} + x - 1\), find all zeros.</div>
+    <div class="example-solution">
+      <p>Conjugate \(-i\) is also a zero. Quadratic factor: \((x-i)(x+i) = x^2 + 1\).</p>
+      <p>Divide: \(\dfrac{x^3 - x^2 + x - 1}{x^2 + 1} = x - 1\) (synthetic or long division).</p>
+      <p>Third zero: \(x = 1\). All zeros: \(\{1,\,i,\,-i\}\).</p>
+      <span class="example-answer">\(P(x) = (x-1)(x-i)(x+i)\)</span>
+    </div>
+  </div>
+
+  <div class="example">
+    <div class="example-title">Worked Example 4.B &mdash; Build a Polynomial</div>
+    <div class="example-problem">Build degree 3 with real integer coefficients having zeros \(2\) and \(1+i\).</div>
+    <div class="example-solution">
+      <p>Conjugate \(1-i\) must also be a zero. \(\bigl(x-(1+i)\bigr)\bigl(x-(1-i)\bigr) = (x-1)^2 + 1 = x^2 - 2x + 2\).</p>
+      <p>\(P(x) = (x-2)(x^2 - 2x + 2) = x^3 - 4x^2 + 6x - 4\).</p>
+      <span class="example-answer">\(P(x) = x^{3} - 4x^{2} + 6x - 4\)</span>
+    </div>
+  </div>
+
+  <div class="problem">
+    <span class="q-num">21.</span> Given that \((3 - i)\) is a zero of \(P(x) = x^{4} - 9x^{3} + 30x^{2} - 42x + 20\), find <strong>all four zeros</strong> and write \(P(x)\) in fully factored linear form.
+    <div class="work-space tall"></div>
+  </div>
+
+  <div class="problem">
+    <span class="q-num">22.</span> Find a polynomial \(P(x)\) of degree 4 with <strong>real integer coefficients</strong> having zeros \(x = 2\) (multiplicity 2) and \(x = 2 + i\). Expand to standard form \(ax^{4} + bx^{3} + cx^{2} + dx + e\).
+    <div class="work-space tall"></div>
+  </div>
+
+  <div class="problem">
+    <span class="q-num">23.</span> Build a polynomial \(P(x)\) of degree 3 with real coefficients having zeros \(x = -1\) and \(x = 3i\). Expand to standard form.
+    <div class="work-space"></div>
+  </div>
+
+  <!-- ============================================================
+       PART 5 — Synthetic Division & Factor Theorem (4 problems)
+       ============================================================ -->
+  <div class="part-header">Part 5 &mdash; Synthetic Division &amp; Factor Theorem (4 problems)</div>
+  <div class="directions"><strong>Remainder Theorem:</strong> when \(P(x)\) is divided by \((x-c)\), the remainder is \(P(c)\). <strong>Factor Theorem:</strong> \((x-c)\) is a factor \(\iff P(c) = 0\).</div>
+
+  <div class="example">
+    <div class="example-title">Worked Example 5.A &mdash; Synthetic Division</div>
+    <div class="example-problem">Divide \((x^3 + 2x^2 - 5x - 6) \div (x - 2)\) using synthetic division.</div>
+    <div class="example-solution">
+      <p>\(c = 2\). Coefficients: \(1, 2, -5, -6\).</p>
+      <p>\(\begin{array}{r|rrrr} 2 & 1 & 2 & -5 & -6 \\ & & 2 & 8 & 6 \\ \hline & 1 & 4 & 3 & \boxed{0} \end{array}\)</p>
+      <p>Quotient: \(x^2 + 4x + 3\); remainder \(0\). So \((x-2)\) is a factor.</p>
+      <span class="example-answer">\(Q(x) = x^{2} + 4x + 3,\;\; R = 0\)</span>
+    </div>
+  </div>
+
+  <div class="example">
+    <div class="example-title">Worked Example 5.B &mdash; Find Parameter via Factor Theorem</div>
+    <div class="example-problem">Find \(k\) so that \((x-1)\) is a factor of \(P(x) = x^3 + kx - 3\).</div>
+    <div class="example-solution">
+      <p>By Factor Theorem, \(P(1) = 0\): \(1 + k - 3 = 0 \Rightarrow k = 2\).</p>
+      <span class="example-answer">\(k = 2\)</span>
+    </div>
+  </div>
+
+  <div class="problem">
+    <span class="q-num">24.</span> Use synthetic division to compute \((2x^{3} + 3x^{2} - 8x + 3) \div (x - 1)\). State \(Q(x)\) and \(R\). Is \((x-1)\) a factor?
+    <div class="work-space tall"></div>
+  </div>
+
+  <div class="problem">
+    <span class="q-num">25.</span> Use the Remainder Theorem to find \(P(-2)\) for \(P(x) = x^{4} - 3x^{2} + 2x - 5\) using synthetic division.
+    <div class="work-space"></div>
+  </div>
+
+  <div class="problem">
+    <span class="q-num">26.</span> Find \(k\) so that \((x - 3)\) is a factor of \(P(x) = x^{3} - 2x^{2} + kx - 6\). Justify with Factor Theorem.
+    <div class="work-space"></div>
+  </div>
+
+  <div class="problem">
+    <span class="q-num">27.</span> Factor completely: \(P(x) = x^{3} - 7x + 6\). (<em>Hint:</em> verify \(x = 1\) is a zero, then use synthetic division.)
+    <div class="work-space tall"></div>
+  </div>
+
+  <!-- ============================================================
+       PART 6 — Polynomial Graphing (3 problems)
+       ============================================================ -->
+  <div class="part-header page-break">Part 6 &mdash; Polynomial Graphing (3 problems)</div>
+  <div class="directions"><strong>Multiplicity rules:</strong> odd \(>\!1\) = slide / flat-cross, odd \(=\!1\) = cross, even = bounce.</div>
+
+  <div class="example">
+    <div class="example-title">Worked Example 6.A &mdash; Sketching from Factored Form</div>
+    <div class="example-problem">Analyze \(P(x) = (x-1)^{2}(x+2)\): degree, end behavior, zeros &amp; multiplicity, \(y\)-intercept.</div>
+    <div class="example-solution">
+      <p>Degree \(= 2 + 1 = 3\). Leading term \(x^3\) (positive odd) \(\Rightarrow\) end behavior: \(\downarrow \uparrow\) (left down, right up).</p>
+      <p>Zeros: \(x = 1\) (mult 2, bounce); \(x = -2\) (mult 1, cross).</p>
+      <p>\(y\)-intercept: \(P(0) = (-1)^2(2) = 2\). Point \((0, 2)\).</p>
+      <span class="example-answer">Deg 3, \(\downarrow\!\uparrow\); 1 (bounce), \(-2\) (cross); \((0, 2)\)</span>
+    </div>
+  </div>
+
+  <div class="example">
+    <div class="example-title">Worked Example 6.B &mdash; End Behavior from Leading Term</div>
+    <div class="example-problem">State the end behavior of \(P(x) = -2x^4 + 3x^3 - x + 5\).</div>
+    <div class="example-solution">
+      <p>Leading term \(-2x^4\): degree even, coefficient negative \(\Rightarrow\) both ends point down.</p>
+      <p>As \(x \to \pm\infty\), \(P(x) \to -\infty\). Arrows: \(\downarrow\!\downarrow\).</p>
+      <span class="example-answer">\(\downarrow\!\downarrow\) (both ends to \(-\infty\))</span>
+    </div>
+  </div>
+
+  <div class="problem">
+    <span class="q-num">28.</span> For \(P(x) = (x-1)(x+2)^{2}(x-3)\): state degree, end behavior, all zeros with multiplicity (classify each as bounce/cross/slide), and the \(y\)-intercept.
+    <div class="work-space tall"></div>
+  </div>
+
+  <div class="problem">
+    <span class="q-num">29.</span> For \(P(x) = -x^{3}(x-2)(x+4)^{2}\): state degree, end behavior, all zeros with multiplicity (classify each), and the \(y\)-intercept.
+    <div class="work-space tall"></div>
+  </div>
+
+  <div class="problem">
+    <span class="q-num">30.</span> Sketch a polynomial \(P(x)\) of <strong>degree 4</strong> satisfying ALL of: (i) zero at \(x = -2\) (cross), (ii) zero at \(x = 0\) (bounce), (iii) zero at \(x = 3\) (cross), (iv) negative leading coefficient. Provide a possible factored equation and a rough sketch.
+    <div class="work-space" style="min-height: 200px;"></div>
+  </div>
+
+  <div class="footer">
+    Newton School &mdash; 2175 Lemoine Ave Suite 304, Fort Lee, NJ 07650 &mdash; (201) 252-7252 &mdash; Kenny@newtonschool.net<br>
+    Created 2026-04-24 &copy; Newton School &mdash; Mastery Set 30
+  </div>
+
+</div>
+</body>
+</html>
